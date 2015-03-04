@@ -16,6 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CheckTipActivity"
+            android:label="@string/title_activity_check_tip" >
+        </activity>
+        <activity
+            android:name=".SettingActivity"
+            android:label="@string/title_activity_setting" >
+        </activity>
+        <activity
+            android:name=".LogoutActivity"
+            android:label="@string/title_activity_logout" >
+        </activity>
+        <activity
+            android:name=".TableActivity"
+            android:label="@string/title_activity_table" >
+        </activity>
     </application>
 
 </manifest>

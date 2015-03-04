@@ -51,21 +51,44 @@ public class MainActivity extends Activity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+        switch (position) {
+            case 1:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, TableFragment.newInstance(position))
+                        .commit();
+                break;
+            case 2:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, TipFragment.newInstance(position))
+                        .commit();
+                break;
+            case 3:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, SettingFragment.newInstance(position))
+                        .commit();
+                break;
+            default:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, PlaceholderFragment.newInstance(position))
+                        .commit();
+                break;
+        }
+
     }
 
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section1);
+                mTitle = getString(R.string.title_table);
                 break;
             case 2:
-                mTitle = getString(R.string.title_section2);
+                mTitle = getString(R.string.title_tip);
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+                mTitle = getString(R.string.title_setting);
+                break;
+            case 4:
+                mTitle = getString(R.string.title_logout);
                 break;
         }
     }
@@ -91,20 +114,20 @@ public class MainActivity extends Activity
         return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+////        if (id == R.id.action_settings) {
+////            return true;
+////        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     /**
      * A placeholder fragment containing a simple view.
@@ -145,5 +168,11 @@ public class MainActivity extends Activity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
+
+
+
+
+
+
 
 }

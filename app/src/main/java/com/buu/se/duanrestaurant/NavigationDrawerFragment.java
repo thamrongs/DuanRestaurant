@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -102,9 +103,10 @@ public class NavigationDrawerFragment extends Fragment {
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
                 new String[]{
-                        getString(R.string.title_section1),
-                        getString(R.string.title_section2),
-                        getString(R.string.title_section3),
+                        getString(R.string.title_table),
+                        getString(R.string.title_tip),
+                        getString(R.string.title_setting),
+                        getString(R.string.title_logout),
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
@@ -247,10 +249,10 @@ public class NavigationDrawerFragment extends Fragment {
             return true;
         }
 
-        if (item.getItemId() == R.id.action_example) {
-            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
-            return true;
-        }
+//        if (item.getItemId() == R.id.action_example) {
+//            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -263,8 +265,7 @@ public class NavigationDrawerFragment extends Fragment {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setTitle("ร้านแจ้ลำดวล");
-        //R.string.app_name
+        actionBar.setTitle(R.string.app_name);
     }
 
     private ActionBar getActionBar() {

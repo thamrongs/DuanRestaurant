@@ -4,20 +4,19 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity$PlaceholderFragment">
+    tools:context=".MainActivity$TipFragment">
 
     <TextView android:id="@+id/section_label" android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <TextView
+    <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView"
+        android:text="New Switch"
+        android:id="@+id/switch1"
         android:layout_below="@+id/section_label"
-        android:layout_toEndOf="@+id/section_label"
-        android:layout_marginTop="72dp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="132dp" />
 
 
 </RelativeLayout>
