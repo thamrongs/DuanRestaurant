@@ -8,6 +8,7 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -51,6 +52,7 @@ public class MainActivity extends Activity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
+        Log.d("TEST", position+"");
         switch (position) {
             case 1:
                 fragmentManager.beginTransaction()
@@ -59,10 +61,15 @@ public class MainActivity extends Activity
                 break;
             case 2:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, TipFragment.newInstance(position))
+                        .replace(R.id.container, OrderFragment.newInstance(position))
                         .commit();
                 break;
             case 3:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, TipFragment.newInstance(position))
+                        .commit();
+                break;
+            case 4:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, SettingFragment.newInstance(position))
                         .commit();
@@ -78,16 +85,22 @@ public class MainActivity extends Activity
 
     public void onSectionAttached(int number) {
         switch (number) {
+            case 0:
+                mTitle = getString(R.string.app_name);
+                break;
             case 1:
                 mTitle = getString(R.string.title_table);
                 break;
             case 2:
-                mTitle = getString(R.string.title_tip);
+                mTitle = getString(R.string.title_order);
                 break;
             case 3:
-                mTitle = getString(R.string.title_setting);
+                mTitle = getString(R.string.title_tip);
                 break;
             case 4:
+                mTitle = getString(R.string.title_setting);
+                break;
+            case 5:
                 mTitle = getString(R.string.title_logout);
                 break;
         }
