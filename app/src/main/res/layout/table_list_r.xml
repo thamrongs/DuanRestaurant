@@ -15,7 +15,7 @@
             android:layout_height="128dp"
             android:id="@+id/imageView"
             android:layout_gravity="right|top"
-            android:src="@drawable/list_full_table"
+            android:src="@drawable/list_full_table_gray"
             android:layout_marginLeft="-5dp" />
         <ImageView
             android:layout_width="95dp"
@@ -24,6 +24,14 @@
             android:layout_gravity="center_horizontal|top"
             android:src="@drawable/table_reserved"
             android:layout_marginLeft="-5dp" />
+        <ImageView
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:id="@+id/imageView6"
+            android:layout_gravity="center_horizontal|bottom"
+            android:src="@drawable/num_1"
+            android:layout_marginLeft="-3dp"
+            android:layout_marginBottom="4dp" />
     </FrameLayout>
 
 </FrameLayout>
