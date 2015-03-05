@@ -24,47 +24,59 @@
             android:id="@+id/textView"
             android:layout_gravity="center_horizontal|top"
             android:layout_marginLeft="110dp"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="10dp"
+            android:textSize="25dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="ราคา"
-            android:id="@+id/textv"
-            android:layout_gravity="center_horizontal|bottom"
-            android:layout_marginLeft="110dp"
-            android:layout_marginTop="50dp" />
+            android:text="500000 บาท"
+            android:id="@+id/textView2"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="67dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="20dp" />
+
+        <Button
+            android:layout_width="53dp"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:id="@+id/button"
+            android:layout_alignTop="@+id/textView"
+            android:layout_toEndOf="@+id/textView"
+            android:layout_marginLeft="29dp"
+            android:layout_marginTop="-12dp" />
+
+        <Button
+            android:layout_width="53dp"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:id="@+id/button2"
+            android:layout_alignTop="@+id/textView"
+            android:layout_toEndOf="@+id/textView"
+            android:layout_marginLeft="29dp"
+            android:layout_marginTop="29dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="30"
-            android:id="@+id/tv_price"
-            android:layout_gravity="center_horizontal|bottom"
-            android:layout_marginLeft="150dp"
-            android:layout_marginTop="50dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="false" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="บาท"
-            android:id="@+id/textv2"
-            android:layout_gravity="center_horizontal|bottom"
-            android:layout_marginLeft="170dp"
-            android:layout_marginTop="50dp" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="1 x"
+            android:id="@+id/textView3"
+            android:layout_alignBottom="@+id/textView2"
+            android:layout_alignStart="@+id/textView" />
+
     </RelativeLayout>
 
     <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="81dp"
+        android:layout_height="78dp"
         android:id="@+id/imageButton"
         android:src="@drawable/pic_1"
         android:layout_gravity="center_vertical|left"
         android:layout_marginLeft="4dp"
-        android:layout_marginTop="-2dp" />
+        android:layout_marginTop="-3dp" />
 
 </FrameLayout>
