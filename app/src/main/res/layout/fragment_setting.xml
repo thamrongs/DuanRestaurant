@@ -9,13 +9,5 @@
     <TextView android:id="@+id/section_label" android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <TextClock
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textClock"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/section_label"
-        android:layout_marginBottom="129dp" />
-
 
 </RelativeLayout>
