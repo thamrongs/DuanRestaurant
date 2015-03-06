@@ -1,38 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="128dp"
-        android:layout_gravity="left|top">
-
-        <ImageView
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_width="111dp"
             android:layout_height="128dp"
-            android:id="@+id/imageView"
             android:layout_gravity="left|top"
-            android:src="@drawable/list_full_table_gray" />
-        <ImageView
-            android:layout_width="95dp"
-            android:layout_height="94dp"
-            android:id="@+id/imageView3"
-            android:layout_gravity="center_horizontal|top"
-            android:src="@drawable/table_eating"
-            android:layout_marginRight="4dp"
-            android:layout_marginLeft="2dp" />
+            android:background="@drawable/list_full_table_gray"
+            android:layout_marginLeft="5dp">
 
-        <ImageView
-            android:layout_width="29dp"
-            android:layout_height="29dp"
-            android:id="@+id/imageView6"
-            android:layout_gravity="center_horizontal|bottom"
-            android:src="@drawable/num_1"
-            android:layout_marginLeft="-3dp"
-            android:layout_marginBottom="4dp" />
-    </FrameLayout>
 
-</FrameLayout>
+            <ImageView
+                android:layout_width="95dp"
+                android:layout_height="94dp"
+                android:id="@+id/imageView3"
+                android:layout_gravity="center_horizontal|top"
+                android:background="@drawable/table_eating" />
+
+            <ImageView
+                android:layout_width="29dp"
+                android:layout_height="29dp"
+                android:id="@+id/imageView6"
+                android:layout_gravity="center_horizontal|bottom"
+                android:background="@drawable/num_1"
+                android:layout_marginLeft="-3dp"
+                android:layout_marginBottom="4dp" />
+        </FrameLayout>
+
+</RelativeLayout>
