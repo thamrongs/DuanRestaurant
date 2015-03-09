@@ -8,6 +8,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,7 +25,7 @@ import android.widget.TextView;
 
 
 public class MainActivity extends Activity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+    implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -57,17 +58,14 @@ public class MainActivity extends Activity
         FragmentManager fragmentManager = getFragmentManager();
         Log.d("TEST", position+"");
         switch (position) {
-            case 1:
-                View decorView = getWindow().getDecorView();
-                // Hide both the navigation bar and the status bar.
-                // SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as
-                // a general rule, you should design your app to hide the status bar whenever you
-                // hide the navigation bar.
-                int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN;
-                decorView.setSystemUiVisibility(uiOptions);
+            case 0:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, PlaceholderFragment.newInstance(position))
+                        .commit();
+                break;
+            case 1:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, TableFragment.newInstance(position))
                         .commit();
                 break;
             case 2:
@@ -82,23 +80,18 @@ public class MainActivity extends Activity
                 break;
             case 4:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, SettingFragment.newInstance(position))
-                        .commit();
-                break;
-            case 6:
-                fragmentManager.beginTransaction()
                         .replace(R.id.container, TableOrder.newInstance(position))
                         .commit();
                 break;
-            case 7:
+            case 5:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, ReserveTable.newInstance(position))
                         .commit();
                 break;
             default:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(position))
-                        .commit();
+                Intent data = new Intent(MainActivity.this, LoginActivity.class);
+                data.putExtra("userid","000001");
+                startActivity(data);
                 break;
         }
 
@@ -119,16 +112,13 @@ public class MainActivity extends Activity
                 mTitle = getString(R.string.title_tip);
                 break;
             case 4:
-                mTitle = getString(R.string.title_setting);
+                mTitle = "รายการอาหาร โต๊ะ 1";
                 break;
             case 5:
-                mTitle = getString(R.string.title_logout);
+                mTitle = "จองโต๊ะอาหาร";
                 break;
             case 6:
-                mTitle = "รายการอาหาร";
-                break;
-            case 7:
-                mTitle = "จองโต๊ะอาหาร";
+                mTitle = getString(R.string.title_logout);
                 break;
         }
     }
@@ -188,33 +178,7 @@ public class MainActivity extends Activity
         alert.show();
 
     }
-    public void onClickSetIp(View v){
-        AlertDialog.Builder alertDlg = new AlertDialog.Builder(this);
 
-        alertDlg.setMessage("ใส่ IP Server ที่ต้องการเชื่อมต่อ")
-                .setTitle("ตั้งค่า IP")
-                .setCancelable(false);
-        final EditText input = new EditText(this);
-        alertDlg.setView(input);
-
-        alertDlg.setPositiveButton("ยืนยันการเชื่อมต่อ",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-        alertDlg.setNegativeButton("ยกเลิก",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-        AlertDialog alert = alertDlg.create();
-        alert.show();
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
