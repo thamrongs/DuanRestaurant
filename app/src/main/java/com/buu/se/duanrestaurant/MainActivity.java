@@ -57,8 +57,16 @@ public class MainActivity extends Activity
         Log.d("TEST", position+"");
         switch (position) {
             case 1:
+                View decorView = getWindow().getDecorView();
+                // Hide both the navigation bar and the status bar.
+                // SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as
+                // a general rule, you should design your app to hide the status bar whenever you
+                // hide the navigation bar.
+                int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN;
+                decorView.setSystemUiVisibility(uiOptions);
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, TableFragment.newInstance(position))
+                        .replace(R.id.container, PlaceholderFragment.newInstance(position))
                         .commit();
                 break;
             case 2:
@@ -207,50 +215,6 @@ public class MainActivity extends Activity
 //
 //        return super.onOptionsItemSelected(item);
 //    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.detail_food, container, false);
-            return rootView;
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
-        }
-    }
-
-
-
-
 
 
 
