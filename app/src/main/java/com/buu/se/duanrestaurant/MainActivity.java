@@ -74,6 +74,11 @@ public class MainActivity extends Activity
                         .replace(R.id.container, SettingFragment.newInstance(position))
                         .commit();
                 break;
+            case 6:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, TableOrder.newInstance(position))
+                        .commit();
+                break;
             default:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, PlaceholderFragment.newInstance(position))
@@ -102,6 +107,9 @@ public class MainActivity extends Activity
                 break;
             case 5:
                 mTitle = getString(R.string.title_logout);
+                break;
+            case 6:
+                mTitle = "รายการอาหาร";
                 break;
         }
     }
