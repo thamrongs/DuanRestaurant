@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -170,6 +171,33 @@ public class MainActivity extends Activity
                 .setTitle("จองโต๊ะ")
                 .setCancelable(false)
                 .setPositiveButton("ยืนยันการจอง",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+        alertDlg.setNegativeButton("ยกเลิก",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alertDlg.create();
+        alert.show();
+
+    }
+    public void onClickSetIp(View v){
+        AlertDialog.Builder alertDlg = new AlertDialog.Builder(this);
+
+        alertDlg.setMessage("ใส่ IP Server ที่ต้องการเชื่อมต่อ")
+                .setTitle("ตั้งค่า IP")
+                .setCancelable(false);
+        final EditText input = new EditText(this);
+        alertDlg.setView(input);
+
+        alertDlg.setPositiveButton("ยืนยันการเชื่อมต่อ",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

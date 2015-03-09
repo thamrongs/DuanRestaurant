@@ -6,23 +6,26 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.buu.se.duanrestaurant.LoginActivity"
-    android:background="@drawable/log_in">
+    android:background="@drawable/log_in"
+    android:weightSum="1">
 
     <!-- Login progress -->
 
     <FrameLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="541dp"
+        android:layout_marginTop="-32dp"
+        >
 
         <AutoCompleteTextView android:id="@+id/email" android:layout_width="247dp"
             android:layout_height="30dp" android:hint="รหัสพนักงาน"
             android:inputType="textEmailAddress" android:maxLines="1"
             android:singleLine="true"
             android:layout_gravity="center"
-            android:layout_marginTop="-10dp"
             android:background="#00000000"
             android:textColorHint="#B6B6B6"
-            android:textColor="#00796B" />
+            android:textColor="#00796B"
+            android:layout_marginTop="-10dp" />
 
         <EditText android:id="@+id/password" android:layout_width="247dp"
             android:layout_height="30dp" android:hint="รหัสผ่าน"
@@ -35,6 +38,28 @@
             android:background="#00000000"
             android:textColorHint="#B6B6B6"
             android:textColor="#00796B" />
+
+        <ImageButton
+            android:layout_width="65dp"
+            android:layout_height="47dp"
+            android:id="@+id/imageButton"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginTop="78dp"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginRight="26dp"
+            android:onClick="onClickSetIp"
+            android:nestedScrollingEnabled="false"
+            android:background="#00000000"/>
+
+        <ImageButton
+            android:layout_width="208dp"
+            android:layout_height="47dp"
+            android:id="@+id/imageButton2"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="78dp"
+            android:background="#00000000"/>
+
     </FrameLayout>
 
 </LinearLayout>
