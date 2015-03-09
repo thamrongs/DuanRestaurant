@@ -81,6 +81,11 @@ public class MainActivity extends Activity
                         .replace(R.id.container, TableOrder.newInstance(position))
                         .commit();
                 break;
+            case 7:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, ReserveTable.newInstance(position))
+                        .commit();
+                break;
             default:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, PlaceholderFragment.newInstance(position))
@@ -112,6 +117,9 @@ public class MainActivity extends Activity
                 break;
             case 6:
                 mTitle = "รายการอาหาร";
+                break;
+            case 7:
+                mTitle = "จองโต๊ะอาหาร";
                 break;
         }
     }
