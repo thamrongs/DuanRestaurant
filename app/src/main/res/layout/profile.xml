@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.03"
+            android:baselineAligned="false"
+            android:weightSum="1">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="7.44">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="255dp"
+                    android:id="@+id/imageView4"
+                    android:src="@drawable/per_profile_full"
+                    android:layout_weight="0.23" />
+
+                <ImageView
+                    android:layout_width="217dp"
+                    android:layout_height="200dp"
+                    android:id="@+id/imageView5"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/per_profile"
+                    android:layout_marginTop="-20dp" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.94"
+            android:weightSum="1">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="ชื่อ"
+                    android:id="@+id/textView4"
+                    android:layout_gravity="left|top"
+                    android:textColor="@color/icons"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="เบอร์โทร"
+                    android:id="@+id/textView10"
+                    android:layout_gravity="left|center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="-40dp"
+                    android:textColor="@color/icons" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="email"
+                    android:id="@+id/textView12"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="100dp"
+                    android:textColor="@color/icons" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="รหัสสมาชิก"
+                    android:id="@+id/textView15"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginBottom="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/icons" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="นายธำรงค์ สุเนตร"
+                    android:id="@+id/textView14"
+                    android:layout_gravity="right|top"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/icons"
+                    android:layout_marginRight="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="087-6096921"
+                    android:id="@+id/textView11"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginTop="-40dp"
+                    android:textColor="@color/icons"
+                    android:layout_marginRight="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="thamrong@gmail.com"
+                    android:id="@+id/textView13"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginBottom="100dp"
+                    android:textColor="@color/icons"
+                    android:layout_marginRight="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="000001"
+                    android:id="@+id/textView16"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginBottom="50dp"
+                    android:textColor="@color/icons"
+                    android:layout_marginRight="10dp" />
+            </FrameLayout>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</FrameLayout>
