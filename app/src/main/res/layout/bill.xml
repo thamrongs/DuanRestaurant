@@ -33,17 +33,6 @@
                 android:layout_marginTop="20dp"
                 android:layout_gravity="left|top" />
 
-            <EditText
-                android:layout_width="283dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/editText2"
-                android:hint="   .   .   .    "
-                android:layout_below="@+id/textView9"
-                android:layout_alignStart="@+id/textView9"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="40dp"
-                android:textSize="30dp"
-                android:layout_gravity="left|center_vertical" />
         </FrameLayout>
 
     </LinearLayout>
