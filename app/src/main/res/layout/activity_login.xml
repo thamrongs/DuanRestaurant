@@ -27,7 +27,6 @@
         <EditText android:id="@+id/password" android:layout_width="247dp"
             android:layout_height="30dp" android:hint="รหัสผ่าน"
             android:imeActionId="@+id/login"
-            android:imeActionLabel="@string/action_sign_in_short"
             android:imeOptions="actionUnspecified" android:inputType="textPassword"
             android:maxLines="1" android:singleLine="true"
             android:layout_gravity="center"

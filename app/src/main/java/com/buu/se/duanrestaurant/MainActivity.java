@@ -8,8 +8,18 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,6 +29,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -55,18 +66,20 @@ public class MainActivity extends Activity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         Log.d("TEST", position+"");
+//        View decorView = getWindow().getDecorView();
+//        int uiOptions;
         switch (position) {
-            case 1:
-                View decorView = getWindow().getDecorView();
-                // Hide both the navigation bar and the status bar.
-                // SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as
-                // a general rule, you should design your app to hide the status bar whenever you
-                // hide the navigation bar.
-                int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN;
-                decorView.setSystemUiVisibility(uiOptions);
+            case 0:
+//                uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+//                        | View.SYSTEM_UI_FLAG_FULLSCREEN;
+//                decorView.setSystemUiVisibility(uiOptions);
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(position))
+                        .replace(R.id.container, ProfileFragment.newInstance(position))
+                        .commit();
+                break;
+            case 1:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, TableFragment.newInstance(position))
                         .commit();
                 break;
             case 2:
@@ -102,6 +115,71 @@ public class MainActivity extends Activity
         }
 
     }
+
+//    public class RoundedImageView extends ImageView {
+//
+//        public RoundedImageView(Context context) {
+//            super(context);
+//        }
+//
+//        public RoundedImageView(Context context, AttributeSet attrs) {
+//            super(context, attrs);
+//        }
+//
+//        public RoundedImageView(Context context, AttributeSet attrs, int defStyle) {
+//            super(context, attrs, defStyle);
+//        }
+//
+//        @Override
+//        protected void onDraw(Canvas canvas) {
+//
+//            Drawable drawable = getDrawable();
+//
+//            if (drawable == null) {
+//                return;
+//            }
+//
+//            if (getWidth() == 0 || getHeight() == 0) {
+//                return;
+//            }
+//            Bitmap b =  ((BitmapDrawable)drawable).getBitmap() ;
+//            Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
+//
+//            int w = getWidth(), h = getHeight();
+//
+//
+//            Bitmap roundBitmap =  getCroppedBitmap(bitmap, w);
+//            canvas.drawBitmap(roundBitmap, 0,0, null);
+//
+//        }
+//        public Bitmap getCroppedBitmap(Bitmap bmp, int radius) {
+//            Bitmap sbmp;
+//            if(bmp.getWidth() != radius || bmp.getHeight() != radius)
+//                sbmp = Bitmap.createScaledBitmap(bmp, radius, radius, false);
+//            else
+//                sbmp = bmp;
+//            Bitmap output = Bitmap.createBitmap(sbmp.getWidth(),
+//                    sbmp.getHeight(), Bitmap.Config.ARGB_8888);
+//            Canvas canvas = new Canvas(output);
+//
+//            final int color = 0xffa19774;
+//            final Paint paint = new Paint();
+//            final Rect rect = new Rect(0, 0, sbmp.getWidth(), sbmp.getHeight());
+//
+//            paint.setAntiAlias(true);
+//            paint.setFilterBitmap(true);
+//            paint.setDither(true);
+//            canvas.drawARGB(0, 0, 0, 0);
+//            paint.setColor(Color.parseColor("#BAB399"));
+//            canvas.drawCircle(sbmp.getWidth() / 2+0.7f, sbmp.getHeight() / 2+0.7f,
+//                    sbmp.getWidth() / 2+0.1f, paint);
+//            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+//            canvas.drawBitmap(sbmp, rect, rect, paint);
+//
+//            return output;
+//        }
+//
+//    }
 
     public void onSectionAttached(int number) {
         switch (number) {
