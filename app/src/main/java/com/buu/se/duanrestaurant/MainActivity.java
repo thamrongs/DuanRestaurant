@@ -92,11 +92,6 @@ public class MainActivity extends Activity
                         .replace(R.id.container, TipFragment.newInstance(position))
                         .commit();
                 break;
-            case 4:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, SettingFragment.newInstance(position))
-                        .commit();
-                break;
             case 6:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, TableOrder.newInstance(position))
