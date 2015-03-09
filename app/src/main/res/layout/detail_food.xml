@@ -50,7 +50,8 @@
                     android:id="@+id/textView4"
                     android:layout_gravity="center"
                     android:layout_marginTop="-15dp"
-                    android:textSize="40dp" />
+                    android:textSize="40dp"
+                    android:textColor="@color/icons" />
 
                 <Button
                     android:layout_width="109dp"
@@ -107,6 +108,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="50 บาท"
         android:layout_gravity="center_vertical|center_horizontal"
-        android:id="@+id/textView5" />
+        android:id="@+id/textView5"
+        android:textColor="@color/icons" />
 
 </FrameLayout>

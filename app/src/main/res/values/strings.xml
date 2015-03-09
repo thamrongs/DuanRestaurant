@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Chil Restaurant</string>
+    <string name="app_name">RES Man</string>
     <string name="title_table">โต๊ะอาหาร</string>
     <string name="title_order">รายการอาหาร</string>
     <string name="title_tip">ตรวจสอบ Tip</string>
