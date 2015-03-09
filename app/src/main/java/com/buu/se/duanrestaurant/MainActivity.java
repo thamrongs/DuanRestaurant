@@ -3,9 +3,11 @@ package com.buu.se.duanrestaurant;
 import android.app.Activity;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -121,6 +123,30 @@ public class MainActivity extends Activity
         actionBar.setTitle(mTitle);
     }
 
+    public void onClickConfirm(View v){
+        AlertDialog.Builder alertDlg = new AlertDialog.Builder(this);
+
+        alertDlg.setMessage("คุณต้องการชำระเงินโต๊ะ... ใช่หรือไม่ ?")
+                .setTitle("ชำระเงิน")
+                .setCancelable(false)
+                .setPositiveButton("ยืนยันการชำระเงิน",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+        alertDlg.setNegativeButton("ยกเลิก",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alertDlg.create();
+        alert.show();
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="40 บาท"
+            android:text="50 บาท"
             android:id="@+id/textView2"
             android:layout_below="@+id/textView"
             android:layout_alignParentEnd="true"
