@@ -89,7 +89,8 @@
                 android:text="จอง"
                 android:id="@+id/button3"
                 android:layout_gravity="left|center_vertical"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:onClick="onClickBookTable" />
         </FrameLayout>
 
     </LinearLayout>

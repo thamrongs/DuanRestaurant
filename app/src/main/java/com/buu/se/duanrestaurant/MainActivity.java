@@ -155,6 +155,30 @@ public class MainActivity extends Activity
         alert.show();
 
     }
+    public void onClickBookTable(View v){
+        AlertDialog.Builder alertDlg = new AlertDialog.Builder(this);
+
+        alertDlg.setMessage("คุณต้องการทำการจองโต๊ะ... ใช่หรือไม่ ?")
+                .setTitle("จองโต๊ะ")
+                .setCancelable(false)
+                .setPositiveButton("ยืนยันการจอง",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+        alertDlg.setNegativeButton("ยกเลิก",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alertDlg.create();
+        alert.show();
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
