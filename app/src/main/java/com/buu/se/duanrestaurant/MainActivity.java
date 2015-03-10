@@ -70,31 +70,25 @@ public class MainActivity extends Activity
                 break;
             case 2:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, OrderFragment.newInstance(position))
-                        .commit();
-                break;
-            case 3:
-                fragmentManager.beginTransaction()
                         .replace(R.id.container, TipFragment.newInstance(position))
                         .commit();
                 break;
             case 4:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, TableOrder.newInstance(position))
-                        .commit();
-                break;
-            case 5:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, ReserveTable.newInstance(position))
+                        .replace(R.id.container, OrderFragment.newInstance(position))
                         .commit();
                 break;
             default:
-                Intent data = new Intent(MainActivity.this, LoginActivity.class);
-                data.putExtra("userid","000001");
-                startActivity(data);
+                finish();
                 break;
         }
 
+    }
+
+    public void onClickTable(View v){
+        Intent data = new Intent(MainActivity.this, ReserveTable.class);
+        data.putExtra("userid","000001");
+        startActivity(data);
     }
 
     public void onSectionAttached(int number) {
@@ -106,20 +100,13 @@ public class MainActivity extends Activity
                 mTitle = getString(R.string.title_table);
                 break;
             case 2:
-                mTitle = getString(R.string.title_order);
-                break;
-            case 3:
                 mTitle = getString(R.string.title_tip);
                 break;
-            case 4:
-                mTitle = "รายการอาหาร โต๊ะ 1";
-                break;
-            case 5:
-                mTitle = "จองโต๊ะอาหาร";
-                break;
-            case 6:
+            case 3:
                 mTitle = getString(R.string.title_logout);
                 break;
+            case 4:
+                mTitle = "รายการอาหาร";
         }
     }
 
@@ -133,7 +120,7 @@ public class MainActivity extends Activity
     public void onClickConfirm(View v){
         AlertDialog.Builder alertDlg = new AlertDialog.Builder(this);
 
-        alertDlg.setMessage("คุณต้องการชำระเงินโต๊ะ... ใช่หรือไม่ ?")
+        alertDlg.setMessage("คุณต้องการชำระเงินโต๊ะ...  เป็นจำนวนเงิน... ใช่หรือไม่ ?")
                 .setTitle("ชำระเงิน")
                 .setCancelable(false)
                 .setPositiveButton("ยืนยันการชำระเงิน",

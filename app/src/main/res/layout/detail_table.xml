@@ -67,6 +67,47 @@
                     android:ems="10"
                     android:id="@+id/editText"
                     android:layout_gravity="center_horizontal|bottom" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="เบอร์โทร"
+                    android:id="@+id/textView17"
+                    android:layout_gravity="left|center_vertical"
+                    android:layout_marginTop="-15dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/icons" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="ชื่อผู้จอง"
+                    android:id="@+id/textView18"
+                    android:layout_gravity="left|top"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/icons" />
+
+                <EditText
+                    android:layout_width="192dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/editText3"
+                    android:layout_gravity="right|top"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="-10dp" />
+
+                <EditText
+                    android:layout_width="191dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:ems="10"
+                    android:id="@+id/editText4"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="15dp" />
             </FrameLayout>
         </LinearLayout>
 

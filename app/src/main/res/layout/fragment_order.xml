@@ -53,13 +53,21 @@
     </LinearLayout>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ยืนยัน"
         android:id="@+id/button9"
         android:layout_alignParentBottom="true"
-        android:textSize="30dp"
-        android:layout_alignParentRight="true" />
+        android:textSize="20dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="สรุปรายการอาหาร"
+        android:id="@+id/button10"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="20dp" />
 
 
 </RelativeLayout>

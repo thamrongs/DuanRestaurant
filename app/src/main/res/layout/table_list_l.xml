@@ -10,7 +10,8 @@
             android:layout_height="128dp"
             android:layout_gravity="left|top"
             android:background="@drawable/list_full_table_gray"
-            android:layout_marginLeft="5dp">
+            android:layout_marginLeft="5dp"
+            android:onClick="onClickTable">
 
 
             <ImageView
