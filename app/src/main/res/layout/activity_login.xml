@@ -16,7 +16,7 @@
         >
 
         <AutoCompleteTextView android:id="@+id/email" android:layout_width="247dp"
-            android:layout_height="30dp" android:hint="รหัสพนักงาน"
+            android:layout_height="30dp" android:hint="Username"
             android:inputType="textEmailAddress" android:maxLines="1"
             android:singleLine="true"
             android:layout_gravity="center"
@@ -26,7 +26,7 @@
             android:layout_marginTop="-10dp" />
 
         <EditText android:id="@+id/password" android:layout_width="247dp"
-            android:layout_height="30dp" android:hint="รหัสผ่าน"
+            android:layout_height="30dp" android:hint="Password"
             android:imeActionId="@+id/login"
             android:imeOptions="actionUnspecified" android:inputType="textPassword"
             android:maxLines="1" android:singleLine="true"
