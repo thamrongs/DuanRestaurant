@@ -38,7 +38,8 @@
                     android:layout_marginBottom="50dp"
                     android:text="8:00 AM"
                     android:textSize="40dp"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:onClick="showTimePickerDialog" />
 
                 <ImageView
                     android:layout_width="121dp"

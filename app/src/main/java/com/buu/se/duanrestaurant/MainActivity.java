@@ -5,21 +5,58 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.TimePickerDialog;
+import java.util.Calendar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.TimePicker;
+import android.text.format.DateFormat;
+
 
 
 public class MainActivity extends Activity
     implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
+    public class TimePickerFragment extends DialogFragment
+            implements TimePickerDialog.OnTimeSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current time as the default values for the picker
+            final Calendar c = Calendar.getInstance();
+            int hour = c.get(Calendar.HOUR_OF_DAY);
+            int minute = c.get(Calendar.MINUTE);
+
+            // Create a new instance of TimePickerDialog and return it
+            return new TimePickerDialog(getActivity(), this, hour, minute,
+                   DateFormat.is24HourFormat(getActivity()));
+
+        }
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            //MainActivity.this.SetButton(view,hourOfDay,minute);
+            Button tButton = (Button) findViewById(R.id.imageButton3);
+            tButton.setText(hourOfDay + ":" + minute);
+        }
+
+    } // time picker
+    public void showTimePickerDialog(View v) {
+
+        DialogFragment newFragment = new TimePickerFragment();
+        newFragment.show(getFragmentManager(), "timePicker");
+    }
+
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
+
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
     /**
@@ -76,9 +113,9 @@ public class MainActivity extends Activity
     }
 
     public void onClickTable(View v){
-        Intent data = new Intent(MainActivity.this, ReserveTable.class);
-        data.putExtra("userid","000001");
-        startActivity(data);
+        Intent intent = new Intent(this, OrderFragment.class);
+        intent.putExtra("userid","000001");
+        startActivity(intent);
     }
 
     public void onSectionAttached(int number) {
