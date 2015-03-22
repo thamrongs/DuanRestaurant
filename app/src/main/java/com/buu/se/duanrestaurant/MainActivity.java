@@ -4,6 +4,9 @@ import android.app.Activity;
 
 import android.app.ActionBar;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
@@ -20,8 +23,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+
+import java.util.Calendar;
+import java.util.StringTokenizer;
 
 
 public class MainActivity extends Activity
@@ -36,6 +45,13 @@ public class MainActivity extends Activity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    private EditText showdate;
+    private String initialDate;
+    private String initialMonth;
+    private String initialYear;
+    private DatePickerDialog dialog = null;
+
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +88,7 @@ public class MainActivity extends Activity
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, TipFragment.newInstance(position))
                         .commit();
+
                 break;
             case 4:
                 fragmentManager.beginTransaction()
@@ -116,6 +133,8 @@ public class MainActivity extends Activity
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
+
+
 
     public void onClickConfirm(View v){
         AlertDialog.Builder alertDlg = new AlertDialog.Builder(this);
@@ -165,6 +184,36 @@ public class MainActivity extends Activity
         alert.show();
 
     }
+    public class DatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener {
+
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            // Create a new instance of DatePickerDialog and return it
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            Button showdate = (Button) findViewById(R.id.showdate);
+            showdate.setText(day+"/"+month+"/"+year);
+        }
+    }
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getFragmentManager(), "datePicker");
+    }
+    
+
+
+
+
 
 
     @Override
