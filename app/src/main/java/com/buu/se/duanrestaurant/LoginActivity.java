@@ -75,7 +75,7 @@ public class LoginActivity extends Activity {
         alertDlg = null;
     }
 
-    public createAlert() {
+    public void createAlert() {
         alertDlg = null;
         alertDlg = new AlertDialog.Builder(this);
         alertDlg.setMessage("Please Input IP Server")
