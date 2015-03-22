@@ -75,6 +75,18 @@ public class LoginActivity extends Activity {
         alertDlg = null;
     }
 
+    public createAlert() {
+        alertDlg = null;
+        alertDlg = new AlertDialog.Builder(this);
+        alertDlg.setMessage("Please Input IP Server")
+                .setTitle("IP Setting")
+                .setCancelable(false);
+
+
+        alertDlg.setView(input);
+
+    }
+
     public void onClickLogin(View v){
 //        Intent data = new Intent(LoginActivity.this, MainActivity.class);
         username = user.getText().toString();
