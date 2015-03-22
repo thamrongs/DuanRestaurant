@@ -4,24 +4,14 @@ import android.app.Activity;
 
 import android.app.ActionBar;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.TextView;
 
 
 public class MainActivity extends Activity
@@ -106,7 +96,7 @@ public class MainActivity extends Activity
                 mTitle = getString(R.string.title_logout);
                 break;
             case 4:
-                mTitle = "รายการอาหาร";
+                mTitle = "โต๊ะอาหาร";
         }
     }
 
@@ -141,6 +131,8 @@ public class MainActivity extends Activity
         alert.show();
 
     }
+
+
     public void onClickBookTable(View v){
         AlertDialog.Builder alertDlg = new AlertDialog.Builder(this);
 
