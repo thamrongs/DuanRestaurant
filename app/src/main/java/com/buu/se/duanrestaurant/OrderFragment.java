@@ -6,11 +6,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.content.Intent;
+
 
 /**
  * Created by thamrongs on 3/4/15 AD.
  */
 public class OrderFragment extends Fragment {
+
+
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -40,9 +44,11 @@ public class OrderFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+     public void onAttach(Activity activity) {
+       super.onAttach(activity);
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
+
+
 }

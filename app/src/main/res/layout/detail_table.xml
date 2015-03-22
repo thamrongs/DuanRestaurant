@@ -20,6 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="7.44">
 
+
                 <ImageView
                     android:layout_width="440dp"
                     android:layout_height="332dp"
@@ -27,6 +28,37 @@
                     android:src="@drawable/table_blank_detail"
                     android:layout_weight="0.23"
                     android:layout_marginLeft="-35dp" />
+
+                <Button
+                    android:layout_width="192dp"
+                    android:layout_height="69dp"
+                    android:id="@+id/imageButton3"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:background="@drawable/boxinput"
+                    android:layout_marginBottom="50dp"
+                    android:text="เวลาจอง"
+                    android:textSize="40dp"
+                    android:singleLine="true"
+                    android:onClick="showTimePickerDialog" />
+
+                <ImageView
+                    android:layout_width="121dp"
+                    android:layout_height="115dp"
+                    android:id="@+id/imageView5"
+                    android:layout_gravity="center"
+                    android:src="@drawable/cycle_blank"
+                    android:layout_marginTop="-20dp"
+                    android:layout_marginLeft="10dp" />
+
+                <ImageView
+                    android:layout_width="101dp"
+                    android:layout_height="95dp"
+                    android:id="@+id/imageView6"
+                    android:layout_gravity="center"
+                    android:src="@drawable/num_1"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="-20dp" />
+
 
             </FrameLayout>
 
@@ -90,16 +122,6 @@
                     android:textColor="@color/icons" />
 
                 <EditText
-                    android:layout_width="192dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/editText3"
-                    android:layout_gravity="right|top"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="-10dp" />
-
-                <EditText
                     android:layout_width="191dp"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
@@ -108,6 +130,17 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="15dp" />
+
+                <EditText
+                    android:layout_width="191dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="time"
+                    android:ems="10"
+                    android:id="@+id/editText6"
+                    android:layout_gravity="right|top"
+                    android:layout_marginTop="-10dp"
+                    android:layout_marginRight="10dp" />
+
             </FrameLayout>
         </LinearLayout>
 
@@ -135,20 +168,5 @@
         </FrameLayout>
 
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="121dp"
-        android:layout_height="115dp"
-        android:id="@+id/imageView5"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:src="@drawable/cycle_blank"
-        android:layout_marginTop="10dp" />
-    <ImageView
-        android:layout_width="101dp"
-        android:layout_height="95dp"
-        android:id="@+id/imageView5"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:src="@drawable/num_1"
-        android:layout_marginTop="10dp" />
 
 </FrameLayout>
