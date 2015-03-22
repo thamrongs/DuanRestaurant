@@ -220,7 +220,8 @@ public class MainActivity extends Activity
         alert.show();
 
     }
-    public class DatePickerFragment extends DialogFragment
+
+    public class fromDatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
 
         @Override
@@ -228,7 +229,7 @@ public class MainActivity extends Activity
 
             final Calendar c = Calendar.getInstance();
             int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
+            int month = c.get(Calendar.MONTH)+1;
             int day = c.get(Calendar.DAY_OF_MONTH);
 
 
@@ -240,8 +241,39 @@ public class MainActivity extends Activity
             showdate.setText(day+"/"+month+"/"+year);
         }
     }
-    public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
+
+
+
+    public void showFromDatePickerDialog(View v) {
+        DialogFragment newFragment = new fromDatePickerFragment();
+        newFragment.show(getFragmentManager(), "datePicker");
+    }
+
+    public class toDatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH)+1;
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            Button showdate1 = (Button) findViewById(R.id.showdate1);
+            showdate1.setText(day+"/"+month+"/"+year);
+        }
+    }
+
+
+
+    public void showToDatePickerDialog(View v) {
+        DialogFragment newFragment = new toDatePickerFragment();
         newFragment.show(getFragmentManager(), "datePicker");
     }
 
