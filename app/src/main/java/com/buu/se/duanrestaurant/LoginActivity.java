@@ -88,7 +88,7 @@ public class LoginActivity extends Activity {
     }
 
     public void onClickLogin(View v){
-//        Intent data = new Intent(LoginActivity.this, MainActivity.class);
+        Intent data = new Intent(LoginActivity.this, MainActivity.class);
         username = user.getText().toString();
         password = pass.getText().toString();
 
@@ -97,7 +97,7 @@ public class LoginActivity extends Activity {
         }else {
             Toast.makeText(getApplicationContext(), "Please fill the form, don't leave any field blank", Toast.LENGTH_LONG).show();
         }
-        //data.putExtra("userid","000001");
-        //startActivity(data);
+        data.putExtra("userid","000001");
+        startActivity(data);
     }
 }
