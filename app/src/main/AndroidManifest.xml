@@ -5,7 +5,10 @@
 
     <!-- To access Google+ APIs: -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Internet Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Permission to write to external storage -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!--
  To retrieve OAuth 2.0 tokens or invalidate tokens to disconnect a user. This disconnect
      option is required to comply with the Google+ Sign-In developer policies

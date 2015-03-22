@@ -26,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.ImageView;
 import android.widget.TimePicker;
 import android.text.format.DateFormat;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ import java.util.Calendar;
 public class MainActivity extends Activity
     implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
+    private ImageView profilepic;
     public class TimePickerFragment extends DialogFragment
             implements TimePickerDialog.OnTimeSetListener {
 
@@ -105,6 +107,12 @@ public class MainActivity extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        Intent person = getIntent();
+        String url = person.getStringExtra("picurl");
+
+        profilepic = (ImageView) findViewById(R.id.imageView5);
+        profilepic.setImageBitmap();
     }
 
     @Override
