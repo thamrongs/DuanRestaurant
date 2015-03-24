@@ -43,6 +43,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -51,7 +52,6 @@ import java.util.Calendar;
 public class MainActivity extends Activity
     implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-    private ImageView profilepic;
     public class TimePickerFragment extends DialogFragment
             implements TimePickerDialog.OnTimeSetListener {
 
@@ -115,10 +115,6 @@ public class MainActivity extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-
-        profilepic = (ImageView) findViewById(R.id.imageView5);
-        Intent person = getIntent();
-        String picurl = person.getStringExtra("picurl");
     }
 
     @Override
@@ -129,7 +125,7 @@ public class MainActivity extends Activity
         switch (position) {
             case 0:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(position))
+                        .replace(R.id.container, ProfileFragment.newInstance(position))
                         .commit();
                 break;
             case 1:

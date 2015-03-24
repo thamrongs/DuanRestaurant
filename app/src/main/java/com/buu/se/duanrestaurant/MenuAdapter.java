@@ -15,14 +15,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MenuAdapter extends ArrayAdapter<Menus> {
     ArrayList<Menus> menuList;
     LayoutInflater vi;
     int Resource;
     ViewHolder holder;
+    Integer num;
+    TextView nnn;
 
     public MenuAdapter(Context context, int resource, ArrayList<Menus> objects) {
         super(context, resource, objects);
@@ -43,6 +47,9 @@ public class MenuAdapter extends ArrayAdapter<Menus> {
             holder.imageview = (ImageView) v.findViewById(R.id.ivImage);
             holder.menuName = (TextView) v.findViewById(R.id.menuName);
             holder.menuPrice = (TextView) v.findViewById(R.id.menuPrice);
+            holder.btn_add = (Button) v.findViewById(R.id.btn_add);
+            holder.btn_reduce = (Button) v.findViewById(R.id.btn_reduce);
+            holder.number = (TextView) v.findViewById(R.id.txv_number);
             v.setTag(holder);
         } else {
             holder = (ViewHolder) v.getTag();
@@ -51,6 +58,30 @@ public class MenuAdapter extends ArrayAdapter<Menus> {
         new DownloadImageTask(holder.imageview).execute(menuList.get(position).getImg());
         holder.menuName.setText(menuList.get(position).getName());
         holder.menuPrice.setText("ราคา " + menuList.get(position).getPrice() + " บาท");
+
+//        nnn = (TextView) v.findViewById(R.id.txv_number);
+        holder.btn_add.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                View view = (View)v.getParent();
+                nnn = (TextView) view.findViewById(R.id.txv_number);
+                num = Integer.parseInt(nnn.getText().toString());
+                num = num + 1;
+                nnn.setText(num.toString());
+            }
+        });
+
+        holder.btn_reduce.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                View view = (View)v.getParent();
+                nnn = (TextView) view.findViewById(R.id.txv_number);
+                num = Integer.parseInt(nnn.getText().toString());
+                if(num > 0) {
+                    num = num - 1;
+                }
+                nnn.setText(num.toString());
+            }
+        });
+
         return v;
 
     }
@@ -60,32 +91,9 @@ public class MenuAdapter extends ArrayAdapter<Menus> {
         public TextView menuName;
         public TextView menuId;
         public TextView menuPrice;
-
-    }
-
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
+        public Button btn_add;
+        public Button btn_reduce;
+        public TextView number;
 
     }
 }

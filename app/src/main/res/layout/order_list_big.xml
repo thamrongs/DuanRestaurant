@@ -49,8 +49,8 @@
             android:layout_width="103dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="1 x"
-            android:id="@+id/textView3"
+            android:text="1"
+            android:id="@+id/txv_number"
             android:layout_alignBottom="@+id/menuPrice"
             android:layout_alignStart="@+id/menuName"
             android:layout_gravity="left|bottom"
@@ -76,6 +76,7 @@
             android:layout_height="85dp"
             android:layout_gravity="left|top"
             android:id="@+id/ivImage"></ImageView>
+
     </FrameLayout>
 </RelativeLayout>
 

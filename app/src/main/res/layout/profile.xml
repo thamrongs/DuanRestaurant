@@ -5,7 +5,8 @@
     <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:id="@+id/lnl">
 
         <LinearLayout
             android:orientation="vertical"
@@ -30,7 +31,7 @@
                 <ImageView
                     android:layout_width="217dp"
                     android:layout_height="200dp"
-                    android:id="@+id/imageView5"
+                    android:id="@+id/imv_profile"
                     android:layout_gravity="center"
                     android:scaleType="centerCrop"
                     android:src="@drawable/per_profile"
@@ -100,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="นายธำรงค์ สุเนตร"
-                    android:id="@+id/textView14"
+                    android:id="@+id/txv_name"
                     android:layout_gravity="right|top"
                     android:layout_marginTop="20dp"
                     android:textColor="@color/icons"
@@ -111,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="087-6096921"
-                    android:id="@+id/textView11"
+                    android:id="@+id/txv_tel"
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginTop="-40dp"
                     android:textColor="@color/icons"
@@ -122,18 +123,20 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="thamrong@gmail.com"
-                    android:id="@+id/textView13"
+                    android:id="@+id/txv_email"
                     android:layout_gravity="right|bottom"
                     android:layout_marginBottom="100dp"
                     android:textColor="@color/icons"
-                    android:layout_marginRight="10dp" />
+                    android:layout_marginRight="10dp"
+                    android:textSize="18sp"
+                    android:textIsSelectable="true" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="000001"
-                    android:id="@+id/textView16"
+                    android:id="@+id/txt_id"
                     android:layout_gravity="right|bottom"
                     android:layout_marginBottom="50dp"
                     android:textColor="@color/icons"

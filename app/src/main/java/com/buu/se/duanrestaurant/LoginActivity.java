@@ -149,7 +149,7 @@ public class LoginActivity extends Activity {
                 params.put("user", username);
                 params.put("pass", password);
                 fullurl = "http://" + ip + "/resman/index.php/authen/login";
-                Toast.makeText(getApplicationContext(), fullurl, Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), fullurl, Toast.LENGTH_LONG).show();
                 invokeWS(fullurl, params);
 
 
@@ -217,13 +217,16 @@ public class LoginActivity extends Activity {
 
     private void navigatetoHomeActivity(JSONObject obj) {
         Intent data = new Intent(LoginActivity.this, MainActivity.class);
+        SharedPreferences persondata = getSharedPreferences("persondata", MODE_PRIVATE);
         try {
-            data.putExtra("userid", obj.getInt("userid"));
-            data.putExtra("fname", obj.getString("fname"));
-            data.putExtra("lname", obj.getString("lname"));
-            data.putExtra("tel", obj.getString("tel"));
-            data.putExtra("email", obj.getString("email"));
-            data.putExtra("picurl", obj.getString("picurl"));
+            SharedPreferences.Editor editor = persondata.edit();
+            editor.putInt("userid", obj.getInt("userid"));
+            editor.putString("fname", obj.getString("fname"));
+            editor.putString("lname", obj.getString("lname"));
+            editor.putString("tel", obj.getString("tel"));
+            editor.putString("email", obj.getString("email"));
+            editor.putString("picurl", obj.getString("picurl"));
+            editor.commit();
         } catch (JSONException e) {
             e.printStackTrace();
         }
