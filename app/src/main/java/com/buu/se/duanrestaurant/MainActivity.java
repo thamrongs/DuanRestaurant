@@ -26,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TimePicker;
 import android.text.format.DateFormat;
@@ -36,6 +37,10 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import java.util.Calendar;
 
 
@@ -108,11 +113,12 @@ public class MainActivity extends Activity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
+        profilepic = (ImageView) findViewById(R.id.imageView5);
         Intent person = getIntent();
         String url = person.getStringExtra("picurl");
 
-        profilepic = (ImageView) findViewById(R.id.imageView5);
-        profilepic.setImageBitmap();
+
+
     }
 
     @Override
