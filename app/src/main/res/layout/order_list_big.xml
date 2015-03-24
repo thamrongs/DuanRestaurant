@@ -17,8 +17,8 @@
             android:layout_height="wrap_content"
             android:text="+"
             android:id="@+id/button"
-            android:layout_alignTop="@+id/textView"
-            android:layout_toEndOf="@+id/textView"
+            android:layout_alignTop="@+id/menuName"
+            android:layout_toEndOf="@+id/menuName"
             android:layout_gravity="right|top"
             android:layout_marginRight="10dp" />
 
@@ -27,8 +27,8 @@
             android:layout_height="wrap_content"
             android:text="-"
             android:id="@+id/button2"
-            android:layout_alignTop="@+id/textView"
-            android:layout_toEndOf="@+id/textView"
+            android:layout_alignTop="@+id/menuName"
+            android:layout_toEndOf="@+id/menuName"
             android:layout_gravity="right|bottom"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="4dp" />
@@ -38,11 +38,12 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="กะเพราหมูสับ"
-            android:id="@+id/textView"
+            android:id="@+id/menuName"
             android:layout_gravity="left|top"
             android:layout_marginTop="10dp"
             android:textSize="25dp"
-            android:layout_marginLeft="100dp" />
+            android:layout_marginLeft="100dp"
+            android:textColor="#ff020202" />
 
         <TextView
             android:layout_width="103dp"
@@ -50,29 +51,31 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="1 x"
             android:id="@+id/textView3"
-            android:layout_alignBottom="@+id/textView2"
-            android:layout_alignStart="@+id/textView"
+            android:layout_alignBottom="@+id/menuPrice"
+            android:layout_alignStart="@+id/menuName"
             android:layout_gravity="left|bottom"
             android:layout_marginBottom="20dp"
-            android:layout_marginLeft="100dp" />
+            android:layout_marginLeft="100dp"
+            android:textColor="#ff020202" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="50 บาท"
-            android:id="@+id/textView2"
-            android:layout_below="@+id/textView"
+            android:id="@+id/menuPrice"
+            android:layout_below="@+id/menuName"
             android:layout_alignParentEnd="true"
             android:layout_gravity="right|bottom"
             android:layout_marginBottom="20dp"
-            android:layout_marginRight="80dp" />
+            android:layout_marginRight="80dp"
+            android:textColor="#ff030303" />
 
-        <FrameLayout
+        <ImageView
             android:layout_width="87dp"
             android:layout_height="85dp"
-            android:background="@drawable/pic_1"
-            android:layout_gravity="left|top"></FrameLayout>
+            android:layout_gravity="left|top"
+            android:id="@+id/ivImage"></ImageView>
     </FrameLayout>
 </RelativeLayout>
 

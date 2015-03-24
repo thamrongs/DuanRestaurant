@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="IP Address"
-            android:id="@+id/textView"
+            android:id="@+id/menuName"
             android:layout_gravity="left|center_vertical"
             android:layout_marginLeft="20dp"
             android:layout_centerVertical="true"

@@ -12,10 +12,16 @@ import android.app.FragmentManager;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Calendar;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,9 +43,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.Calendar;
 
@@ -115,10 +118,7 @@ public class MainActivity extends Activity
 
         profilepic = (ImageView) findViewById(R.id.imageView5);
         Intent person = getIntent();
-        String url = person.getStringExtra("picurl");
-
-
-
+        String picurl = person.getStringExtra("picurl");
     }
 
     @Override
