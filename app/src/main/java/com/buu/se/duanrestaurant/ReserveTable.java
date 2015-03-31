@@ -2,14 +2,10 @@ package com.buu.se.duanrestaurant;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-
-import com.google.android.gms.identity.intents.AddressConstants;
 
 /**
  * Created by thamrongs on 3/9/15 AD.
@@ -39,8 +35,7 @@ public class ReserveTable extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.detail_reserve_table, container, false);
-
+        View rootView = inflater.inflate(R.layout.detail_table, container, false);
         return rootView;
     }
 
@@ -50,8 +45,5 @@ public class ReserveTable extends Fragment {
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
-
-
-
 
 }

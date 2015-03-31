@@ -14,8 +14,7 @@
             android:background="@drawable/list_full_table_gray"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:nestedScrollingEnabled="false"
-            android:onClick="onClickTable">
+            android:nestedScrollingEnabled="false">
 
 
             <ImageView
