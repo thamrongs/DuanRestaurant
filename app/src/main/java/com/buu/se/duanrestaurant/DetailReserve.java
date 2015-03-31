@@ -9,12 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.google.android.gms.identity.intents.AddressConstants;
-
 /**
- * Created by thamrongs on 3/9/15 AD.
+ * Created by yniarnof on 31-Mar-15.
  */
-public class ReserveTable extends Fragment {
+public class DetailReserve extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -33,14 +31,24 @@ public class ReserveTable extends Fragment {
         return fragment;
     }
 
-    public ReserveTable() {
+    public DetailReserve() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.detail_reserve_table, container, false);
+        View rootView = inflater.inflate(R.layout.detail_table, container, false);
+        Button button = (Button) rootView.findViewById(R.id.button4);
 
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),OrderFragment.class);
+                getActivity().startActivity(i);
+
+            }
+        });
         return rootView;
     }
 
@@ -50,8 +58,3 @@ public class ReserveTable extends Fragment {
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
-
-
-
-
-}

@@ -54,6 +54,11 @@
             android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
         <activity
+            android:name=".OrderFragment">
+
+        </activity>
+
+        <activity
             android:name=".DatePickerActivity"
             android:label="@string/title_activity_setting" >
             <intent-filter>
@@ -61,6 +66,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
 
         <meta-data
             android:name="com.google.android.gms.version"

@@ -150,10 +150,11 @@ public class MainActivity extends Activity
 
     }
 
-    public void onClickTable(View v){
-        Intent intent = new Intent(this, OrderFragment.class);
-        intent.putExtra("userid","000001");
-        startActivity(intent);
+
+    public void onClickTable(View view){
+        Intent j;
+        j = new Intent(this, OrderFragment.class);
+        startActivity(j);
     }
 
     public void onSectionAttached(int number) {
