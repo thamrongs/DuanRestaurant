@@ -2,14 +2,12 @@ package com.buu.se.duanrestaurant;
 
 
 import java.util.ArrayList;
+
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,7 +41,6 @@ public class TableAdapter extends ArrayAdapter<Tables> {
             v = vi.inflate(Resource, null);
             holder.imageview = (ImageView) v.findViewById(R.id.imageTable);
             holder.tableNumber = (TextView) v.findViewById(R.id.tableNumber);
-            holder.frame = (FrameLayout) v.findViewById(R.id.frame);
             v.setTag(holder);
         } else {
             holder = (ViewHolder) v.getTag();
@@ -59,11 +56,6 @@ public class TableAdapter extends ArrayAdapter<Tables> {
             case 2: holder.imageview.setImageResource(R.drawable.table_eating);
                 break;
         }
-        holder.frame.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //Statement
-            }
-        });
 
         return v;
 
@@ -72,7 +64,6 @@ public class TableAdapter extends ArrayAdapter<Tables> {
     static class ViewHolder {
         public ImageView imageview;
         public TextView tableNumber;
-        public FrameLayout frame;
 
     }
 }

@@ -2,7 +2,11 @@ package com.buu.se.duanrestaurant;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -31,8 +35,12 @@ import java.util.ArrayList;
  */
 public class TableFragment extends Fragment {
     ArrayList<Tables> tablesList;
-
     TableAdapter adapter;
+
+    Fragment fr;
+    FragmentManager fm;
+    FragmentTransaction fragmentTransaction;
+
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -72,8 +80,10 @@ public class TableFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long id) {
-                // TODO Auto-generated method stub
-                Toast.makeText(getActivity().getApplicationContext(), tablesList.get(position).getId(), Toast.LENGTH_LONG).show();
+                Intent data = new Intent(getActivity(), ReserveTable.class);
+                data.putExtra("id", id+"");
+                startActivity(data);
+
             }
         });
         return rootView;

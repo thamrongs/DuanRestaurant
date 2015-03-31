@@ -33,8 +33,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CheckTipActivity"
-            android:label="@string/title_activity_check_tip" >
+            android:name=".ReserveTable"
+            android:label=""
+            android:windowSoftInputMode="adjustResize|stateHidden" >>
         </activity>
         <activity
             android:name=".SettingActivity"
