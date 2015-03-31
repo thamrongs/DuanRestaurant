@@ -27,7 +27,7 @@ public class DetailReserve extends Fragment {
         ReserveTable fragment = new ReserveTable();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
+        
         return fragment;
     }
 
@@ -44,7 +44,7 @@ public class DetailReserve extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(),OrderFragment.class);
+                Intent i = new Intent(getActivity(), OrderFragment.class);
                 getActivity().startActivity(i);
 
             }
@@ -58,3 +58,4 @@ public class DetailReserve extends Fragment {
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
+}

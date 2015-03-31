@@ -1,49 +1,75 @@
 package com.buu.se.duanrestaurant;
 
 import android.app.Activity;
-import android.app.Fragment;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.TimePicker;
+
+import java.util.Calendar;
 
 /**
  * Created by thamrongs on 3/9/15 AD.
  */
-public class ReserveTable extends Fragment {
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
-    private static final String ARG_SECTION_NUMBER = "section_number";
+public class ReserveTable extends Activity {
 
-    /**
-     * Returns a new instance of this fragment for the given section
-     * number.
-     */
-    public static ReserveTable newInstance(int sectionNumber) {
-        ReserveTable fragment = new ReserveTable();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    public ReserveTable() {
-    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.detail_table, container, false);
-        return rootView;
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.detail_table);
+
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("id");
+        TextView textView = (TextView) findViewById(R.id.textView);
+        textView.setText(id);
+        Log.d("ID", id+"");
+
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        ((MainActivity) activity).onSectionAttached(
-                getArguments().getInt(ARG_SECTION_NUMBER));
-    }
+    public class TimePickerFragment extends DialogFragment
+            implements TimePickerDialog.OnTimeSetListener {
 
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current time as the default values for the picker
+            final Calendar c = Calendar.getInstance();
+            int hour = c.get(Calendar.HOUR_OF_DAY);
+            int minute = c.get(Calendar.MINUTE);
+
+            // Create a new instance of TimePickerDialog and return it
+            return new TimePickerDialog(getActivity(), this, hour, minute,
+                    DateFormat.is24HourFormat(getActivity()));
+
+        }
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            //MainActivity.this.SetButton(view,hourOfDay,minute);
+            Button tButton = (Button) findViewById(R.id.imageButton3);
+            String m = "",h = "";
+            if(minute < 10){
+                m = "0"+minute;
+            }else{
+                m = minute+"";
+            }
+            if(hourOfDay < 10){
+                h = "0"+hourOfDay;
+            }else{
+                h = hourOfDay+"";
+            }
+            tButton.setText(h + ":" + m);
+        }
+
+    } // time picker
+    public void showTimePickerDialog(View v) {
+
+        DialogFragment newFragment = new TimePickerFragment();
+        newFragment.show(getFragmentManager(), "timePicker");
+    }
 }
