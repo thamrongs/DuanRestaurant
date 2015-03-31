@@ -81,6 +81,7 @@ public class TableFragment extends Fragment {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long id) {
                 Intent data = new Intent(getActivity(), ReserveTable.class);
+                id+=1;
                 data.putExtra("id", id+"");
                 startActivity(data);
 
