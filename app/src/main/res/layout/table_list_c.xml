@@ -9,6 +9,7 @@
         <FrameLayout
             android:layout_width="111dp"
             android:layout_height="128dp"
+            android:id="@+id/frame"
             android:layout_gravity="center_horizontal|top"
             android:background="@drawable/list_full_table_gray"
             android:layout_alignParentTop="true"
@@ -20,17 +21,18 @@
             <ImageView
                 android:layout_width="95dp"
                 android:layout_height="94dp"
-                android:id="@+id/imageView3"
+                android:id="@+id/imageTable"
                 android:layout_gravity="center_horizontal|top"
-                android:background="@drawable/table_blank"
                 android:layout_marginLeft="-3dp" />
-            <ImageView
-                android:layout_width="29dp"
-                android:layout_height="29dp"
-                android:id="@+id/imageView6"
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="1"
+                android:id="@+id/tableNumber"
                 android:layout_gravity="center_horizontal|bottom"
-                android:background="@drawable/num_1"
                 android:layout_marginLeft="-3dp"
-                android:layout_marginBottom="4dp" />
+                android:textSize="30dp" />
         </FrameLayout>
 </RelativeLayout>

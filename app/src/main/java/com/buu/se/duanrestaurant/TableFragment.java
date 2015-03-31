@@ -2,16 +2,37 @@ package com.buu.se.duanrestaurant;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Intent;
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by thamrongs on 3/4/15 AD.
  */
 public class TableFragment extends Fragment {
+    ArrayList<Tables> tablesList;
+
+    TableAdapter adapter;
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -36,7 +57,25 @@ public class TableFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.detail_table, container, false);
+
+        View rootView = inflater.inflate(R.layout.fragment_table, container, false);
+
+        tablesList = new ArrayList<Tables>();
+        new JSONAsyncTask().execute("http://10.51.4.106/resman/index.php/table/get");
+
+        GridView gridview = (GridView) rootView.findViewById(R.id.gridview);
+        adapter = new TableAdapter(getActivity().getApplicationContext(), R.layout.table_list_c, tablesList);
+        gridview.setAdapter(adapter);
+
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+                                    long id) {
+                // TODO Auto-generated method stub
+                Toast.makeText(getActivity().getApplicationContext(), tablesList.get(position).getId(), Toast.LENGTH_LONG).show();
+            }
+        });
         return rootView;
     }
 
@@ -47,6 +86,69 @@ public class TableFragment extends Fragment {
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
 
+    class JSONAsyncTask extends AsyncTask<String, Void, Boolean> {
+
+        ProgressDialog dialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog = new ProgressDialog(getActivity());
+            dialog.setMessage("Loading, please wait");
+            dialog.setTitle("Connecting server");
+            dialog.show();
+            dialog.setCancelable(false);
+        }
+
+        @Override
+        protected Boolean doInBackground(String... urls) {
+            try {
+
+                //------------------>>
+                HttpGet httppost = new HttpGet(urls[0]);
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpResponse response = httpclient.execute(httppost);
+
+                // StatusLine stat = response.getStatusLine();
+                int status = response.getStatusLine().getStatusCode();
+
+                if (status == 200) {
+                    HttpEntity entity = response.getEntity();
+                    String data = EntityUtils.toString(entity);
+
+
+                    JSONObject jsono = new JSONObject(data);
+                    JSONArray jarray = jsono.getJSONArray("tables");
+
+                    for (int i = 0; i < jarray.length(); i++) {
+                        JSONObject object = jarray.getJSONObject(i);
+
+                        Tables table = new Tables();
+
+                        table.setId(object.getInt("id"));
+                        table.setStatus(object.getInt("status"));
+
+                        tablesList.add(table);
+                    }
+                    return true;
+                }
+
+                //------------------>>
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return false;
+        }
+
+        protected void onPostExecute(Boolean result) {
+            dialog.cancel();
+            adapter.notifyDataSetChanged();
+
+        }
+    }
 
 
 }
