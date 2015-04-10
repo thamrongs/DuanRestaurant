@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,15 +82,17 @@ public class TableFragment extends Fragment {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long id) {
                 Intent data = new Intent(getActivity(), ReserveTable.class);
-                id+=1;
-                data.putExtra("id", id+"");
+                Log.d("TEST POSITION", String.valueOf(position));
+                Log.d("TEST ID", String.valueOf(tablesList.get(position).getId()));
+                Log.d("TEST STATUS", String.valueOf(tablesList.get(position).getStatus()));
+                data.putExtra("id", String.valueOf(tablesList.get(position).getId()));
                 startActivity(data);
-
             }
         });
         return rootView;
     }
 
+    
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

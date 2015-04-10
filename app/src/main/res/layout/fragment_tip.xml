@@ -9,34 +9,45 @@
     android:onClick="showDatePickerDialog"
     android:weightSum="1"
     android:gravity="fill_vertical">
-    <Button
-        android:layout_width="112dp"
-        android:layout_height="52dp"
-        android:text="FromDate"
-        android:id="@+id/showdate"
-        android:background="@drawable/boxinput"
-        android:singleLine="true"
-        android:layout_gravity="left"
-        android:onClick="showFromDatePickerDialog" />
 
-    <Button
-        android:layout_width="112dp"
-        android:layout_height="52dp"
-        android:text="ToDate"
-        android:id="@+id/showdate1"
-        android:background="@drawable/boxinput"
-        android:singleLine="true"
-        android:layout_gravity="right"
-        android:layout_marginTop="-51dp"
-        android:onClick="showToDatePickerDialog" />
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="32dp"
-        android:id="@+id/imageView"
-        android:background="@drawable/arrow"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="-42dp" />
+        <Button
+            android:layout_width="112dp"
+            android:layout_height="52dp"
+            android:text="FromDate"
+            android:id="@+id/showdate"
+            android:background="@drawable/boxinput"
+            android:singleLine="true"
+            android:layout_gravity="center_horizontal|bottom|left"
+            android:onClick="showFromDatePickerDialog" />
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="32dp"
+            android:id="@+id/imageView"
+            android:background="@drawable/arrow"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:layout_width="112dp"
+            android:layout_height="52dp"
+            android:text="ToDate"
+            android:id="@+id/showdate1"
+            android:background="@drawable/boxinput"
+            android:singleLine="true"
+            android:layout_gravity="center_horizontal|bottom|right"
+            android:layout_marginTop="-51dp"
+            android:onClick="showToDatePickerDialog" />
+    </FrameLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/list" />
 
 
 </LinearLayout>

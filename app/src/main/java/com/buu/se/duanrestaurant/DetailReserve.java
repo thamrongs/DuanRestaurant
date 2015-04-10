@@ -27,7 +27,7 @@ public class DetailReserve extends Fragment {
         ReserveTable fragment = new ReserveTable();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        
+
         return fragment;
     }
 

@@ -34,7 +34,7 @@
         </activity>
         <activity
             android:name=".ReserveTable"
-            android:label=""
+            android:label="โต๊ะอาหาร"
             android:windowSoftInputMode="adjustResize|stateHidden" >>
         </activity>
         <activity
