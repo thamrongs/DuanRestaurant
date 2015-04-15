@@ -3,6 +3,7 @@ package com.buu.se.duanrestaurant;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -60,8 +61,11 @@ public class OrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_order, container, false);
 
+        SharedPreferences authen = getActivity().getSharedPreferences("authen", getActivity().MODE_PRIVATE);
+        String ip = authen.getString("ip", "10.51.4.106");
+
         menusList = new ArrayList<Menus>();
-        new JSONAsyncTask().execute("http://10.51.4.106/resman/index.php/listmenu/get");
+        new JSONAsyncTask().execute("http://" + ip + "/resman/index.php/listmenu/get");
 
         ListView listview = (ListView) rootView.findViewById(R.id.list);
         adapter = new MenuAdapter(getActivity().getApplicationContext(), R.layout.order_list_big, menusList);

@@ -3,22 +3,42 @@ package com.buu.se.duanrestaurant;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Calendar;
 
 /**
  * Created by thamrongs on 3/9/15 AD.
  */
-public class ReserveTable extends Activity {
+public class ReserveTable extends Activity implements View.OnClickListener {
+
+    Button btn_add, btn_reduce, btn_reserve, btn_sit;
+    EditText edt_num, edt_name, edt_tel;
+    TextView txv_tableId;
+    int tab_id, usr_id;
+    String time_reserve;
+    ProgressDialog prgDialog;
 
 
     @Override
@@ -26,12 +46,102 @@ public class ReserveTable extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_table);
 
+        initailVal();
+    }
+
+    public void initailVal() {
+        btn_add = (Button) findViewById(R.id.btn_add);
+        btn_reduce = (Button) findViewById(R.id.btn_reduce);
+        btn_reserve = (Button) findViewById(R.id.btn_reserve);
+        btn_sit = (Button) findViewById(R.id.btn_sit);
+
+        btn_add.setOnClickListener(this);
+        btn_reduce.setOnClickListener(this);
+        btn_reserve.setOnClickListener(this);
+        btn_sit.setOnClickListener(this);
+
+        edt_num = (EditText) findViewById(R.id.edt_num);
+        edt_name = (EditText) findViewById(R.id.edt_name);
+        edt_tel = (EditText) findViewById(R.id.edt_tel);
+
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
-        TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText(id);
-        Log.d("ID", id+"");
+        txv_tableId = (TextView) findViewById(R.id.txv_tableId);
+        txv_tableId.setText(id);
+        tab_id = Integer.parseInt(id);
 
+        SharedPreferences persondata = getSharedPreferences("persondata", Context.MODE_PRIVATE);
+        usr_id = persondata.getInt("userid", 0);
+
+        // Instantiate Progress Dialog object
+        prgDialog = new ProgressDialog(this);
+        // Set Progress Dialog Text
+        prgDialog.setMessage("Please wait...");
+        // Set Cancelable as False
+        prgDialog.setCancelable(false);
+    }
+
+    private void add() {
+        int num = Integer.parseInt(edt_num.getText().toString());
+        num += 1;
+        edt_num.setText(String.valueOf(num));
+    }
+
+    private void reduce() {
+        int num = Integer.parseInt(edt_num.getText().toString());
+        if(num > 1) {
+            num -= 1;
+            edt_num.setText(String.valueOf(num));
+        }
+    }
+
+    private void reserve() {
+        SharedPreferences authen = getSharedPreferences("authen", MODE_PRIVATE);
+        String ip = authen.getString("ip", "10.51.4.106");
+        String url = "http://" + ip + "/resman/index.php/table/reserve";
+
+        RequestParams params = new RequestParams();
+        params.put("tabid", tab_id);
+        params.put("name", edt_name.getText().toString());
+        params.put("tel", edt_tel.getText().toString());
+        params.put("amountperson", edt_num.getText().toString());
+        params.put("usrid", usr_id);
+        params.put("rsvtime", time_reserve);
+
+        invokeWS(url, params);
+    }
+
+    private void sit() {
+        SharedPreferences authen = getSharedPreferences("authen", MODE_PRIVATE);
+        String ip = authen.getString("ip", "10.51.4.106");
+        String url = "http://" + ip + "/resman/index.php/table/sit";
+
+        RequestParams params = new RequestParams();
+        params.put("tabid", tab_id);
+        params.put("name", edt_name.getText().toString());
+        params.put("tel", edt_tel.getText().toString());
+        params.put("amountperson", edt_num.getText().toString());
+        params.put("usrid", usr_id);
+
+        invokeWS(url, params);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_add:
+                add();
+                break;
+            case R.id.btn_reduce:
+                reduce();
+                break;
+            case R.id.btn_reserve:
+                reserve();
+                break;
+            case R.id.btn_sit:
+                sit();
+                break;
+        }
     }
 
     public class TimePickerFragment extends DialogFragment
@@ -64,6 +174,7 @@ public class ReserveTable extends Activity {
                 h = hourOfDay+"";
             }
             tButton.setText(h + ":" + m);
+            time_reserve = h + ":" + m + ":00";
         }
 
     } // time picker
@@ -71,5 +182,55 @@ public class ReserveTable extends Activity {
 
         DialogFragment newFragment = new TimePickerFragment();
         newFragment.show(getFragmentManager(), "timePicker");
+    }
+
+    /**
+     * Method that performs RESTful webservice invocations
+     *
+     * @param params
+     */
+    public void invokeWS(String url, RequestParams params){
+        // Show Progress Dialog
+        prgDialog.show();
+        // Make RESTful webservice call using AsyncHttpClient object
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.post(url,params ,new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                prgDialog.hide();
+                try {
+                    if(response.getInt("status") == 1){
+                        Toast.makeText(getApplicationContext(), "Reserve/Sit Table Complete!", Toast.LENGTH_LONG).show();
+                    }else if(response.getInt("status") == -1){
+                        Toast.makeText(getApplicationContext(), "Reserve/Sit Table Incomplete!", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Something wrong Please call Admin!", Toast.LENGTH_LONG).show();
+                    }
+
+                    finish();
+                } catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(), "Error Occured [Server's JSON response might be invalid]!", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                //super.onFailure(statusCode, headers, responseString, throwable);
+
+                prgDialog.hide();
+                // When Http response code is '404'
+                if(statusCode == 404){
+                    Toast.makeText(getApplicationContext(), "Requested resource not found", Toast.LENGTH_LONG).show();
+                }
+                // When Http response code is '500'
+                else if(statusCode == 500){
+                    Toast.makeText(getApplicationContext(), "Something went wrong at server end", Toast.LENGTH_LONG).show();
+                }
+                // When Http response code other than 404, 500
+                else{
+                    Toast.makeText(getApplicationContext(), "Unexpected Error occcured! [Most common Error: Device might not be connected to Internet or remote server is not up and running]", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 }
