@@ -33,12 +33,12 @@ import java.util.Calendar;
  */
 public class ReserveTable extends Activity implements View.OnClickListener {
 
-    Button btn_add, btn_reduce, btn_reserve, btn_sit;
-    EditText edt_num, edt_name, edt_tel;
-    TextView txv_tableId;
-    int tab_id, usr_id;
-    String time_reserve;
-    ProgressDialog prgDialog;
+    private Button btn_add, btn_reduce, btn_reserve, btn_sit;
+    private EditText edt_num, edt_name, edt_tel;
+    private TextView txv_tableId;
+    private int tab_id, usr_id;
+    private String time_reserve;
+    private ProgressDialog prgDialog;
 
 
     @Override
@@ -73,12 +73,14 @@ public class ReserveTable extends Activity implements View.OnClickListener {
         SharedPreferences persondata = getSharedPreferences("persondata", Context.MODE_PRIVATE);
         usr_id = persondata.getInt("userid", 0);
 
-        // Instantiate Progress Dialog object
-        prgDialog = new ProgressDialog(this);
-        // Set Progress Dialog Text
-        prgDialog.setMessage("Please wait...");
-        // Set Cancelable as False
-        prgDialog.setCancelable(false);
+        if (prgDialog == null || !prgDialog.isShowing()) {
+            // Instantiate Progress Dialog object
+            prgDialog = new ProgressDialog(this);
+            // Set Progress Dialog Text
+            prgDialog.setMessage("Please wait...");
+            // Set Cancelable as False
+            prgDialog.setCancelable(false);
+        }
     }
 
     private void add() {
@@ -198,6 +200,7 @@ public class ReserveTable extends Activity implements View.OnClickListener {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 prgDialog.hide();
+                prgDialog.dismiss();
                 try {
                     if(response.getInt("status") == 1){
                         Toast.makeText(getApplicationContext(), "Reserve/Sit Table Complete!", Toast.LENGTH_LONG).show();
@@ -206,7 +209,7 @@ public class ReserveTable extends Activity implements View.OnClickListener {
                     } else {
                         Toast.makeText(getApplicationContext(), "Something wrong Please call Admin!", Toast.LENGTH_LONG).show();
                     }
-
+                    setResult(Activity.RESULT_OK);
                     finish();
                 } catch (JSONException e) {
                     Toast.makeText(getApplicationContext(), "Error Occured [Server's JSON response might be invalid]!", Toast.LENGTH_LONG).show();

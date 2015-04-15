@@ -37,6 +37,7 @@ import java.util.ArrayList;
 public class TableFragment extends Fragment {
     ArrayList<Tables> tablesList;
     TableAdapter adapter;
+    final int MYACTIVITY_REQUEST_CODE = 101;
 
     Fragment fr;
     FragmentManager fm;
@@ -69,8 +70,11 @@ public class TableFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_table, container, false);
 
+        SharedPreferences authen = getActivity().getSharedPreferences("authen", getActivity().MODE_PRIVATE);
+        String ip = authen.getString("ip", "10.51.4.106");
+
         tablesList = new ArrayList<Tables>();
-        new JSONAsyncTask().execute("http://10.51.4.106/resman/index.php/table/get");
+        new JSONAsyncTask().execute("http://" + ip + "/resman/index.php/table/get");
 
         GridView gridview = (GridView) rootView.findViewById(R.id.gridview);
         adapter = new TableAdapter(getActivity().getApplicationContext(), R.layout.table_list_c, tablesList);
@@ -81,18 +85,42 @@ public class TableFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long id) {
-                Intent data = new Intent(getActivity(), ReserveTable.class);
-                Log.d("TEST POSITION", String.valueOf(position));
-                Log.d("TEST ID", String.valueOf(tablesList.get(position).getId()));
-                Log.d("TEST STATUS", String.valueOf(tablesList.get(position).getStatus()));
-                data.putExtra("id", String.valueOf(tablesList.get(position).getId()));
-                startActivity(data);
+
+                switch (tablesList.get(position).getStatus()) {
+                    case 0:
+                        Intent data = new Intent(getActivity(), ReserveTable.class);
+                        data.putExtra("id", String.valueOf(tablesList.get(position).getId()));
+                        startActivityForResult(data, MYACTIVITY_REQUEST_CODE);
+                        break;
+                    case 1:
+
+                        break;
+                    case 2:
+
+                        break;
+                }
             }
         });
         return rootView;
     }
 
-    
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if ((requestCode == MYACTIVITY_REQUEST_CODE) && (resultCode == Activity.RESULT_OK)) {
+            SharedPreferences authen = getActivity().getSharedPreferences("authen", getActivity().MODE_PRIVATE);
+            String ip = authen.getString("ip", "10.51.4.106");
+
+            tablesList = new ArrayList<Tables>();
+            new JSONAsyncTask().execute("http://" + ip + "/resman/index.php/table/get");
+
+            GridView gridview = (GridView) getActivity().findViewById(R.id.gridview);
+            adapter = new TableAdapter(getActivity().getApplicationContext(), R.layout.table_list_c, tablesList);
+            gridview.setAdapter(adapter);
+        }
+    }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
