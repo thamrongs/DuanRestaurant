@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.buu.se.duanrestaurant" >
+
     <uses-sdk android:minSdkVersion="7" />
 
     <!-- To access Google+ APIs: -->
@@ -17,6 +18,11 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
 
     <application
         android:allowBackup="true"
@@ -35,7 +41,8 @@
         <activity
             android:name=".ReserveTable"
             android:label="โต๊ะอาหาร"
-            android:windowSoftInputMode="adjustResize|stateHidden" >>
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+>
         </activity>
         <activity
             android:name=".SettingActivity"
@@ -54,25 +61,34 @@
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
-        <activity
-            android:name=".OrderFragment">
-
+        <activity android:name=".OrderFragment" >
         </activity>
-
         <activity
             android:name=".DatePickerActivity"
             android:label="@string/title_activity_setting" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <activity
+            android:name=".detailReservedTable"
+            android:label="@string/title_activity_detail_reserved_table" >
+        </activity>
+        <activity
+            android:name=".ReservedTable"
+            android:label="@string/title_activity_reserved_table" >
+        </activity>
+        <activity
+            android:name=".DetailReserved"
+            android:label="@string/title_activity_detail_reserved" >
+        </activity>
     </application>
 
 </manifest>

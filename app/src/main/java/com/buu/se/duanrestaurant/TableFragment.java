@@ -9,14 +9,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -80,20 +77,25 @@ public class TableFragment extends Fragment {
         adapter = new TableAdapter(getActivity().getApplicationContext(), R.layout.table_list_c, tablesList);
         gridview.setAdapter(adapter);
 
+
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long id) {
 
+                Intent data;
                 switch (tablesList.get(position).getStatus()) {
                     case 0:
-                        Intent data = new Intent(getActivity(), ReserveTable.class);
+                        data = new Intent(getActivity(), ReserveTable.class);
                         data.putExtra("id", String.valueOf(tablesList.get(position).getId()));
                         startActivityForResult(data, MYACTIVITY_REQUEST_CODE);
                         break;
                     case 1:
-
+                        data = null;
+                        data = new Intent(getActivity(), DetailReserved.class);
+                        data.putExtra("id", String.valueOf(tablesList.get(position).getId()));
+                        startActivityForResult(data, MYACTIVITY_REQUEST_CODE);
                         break;
                     case 2:
 
