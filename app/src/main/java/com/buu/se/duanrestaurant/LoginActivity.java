@@ -151,8 +151,6 @@ public class LoginActivity extends Activity {
                 fullurl = "http://" + ip + "/resman/index.php/authen/login";
 //                Toast.makeText(getApplicationContext(), fullurl, Toast.LENGTH_LONG).show();
                 invokeWS(fullurl, params);
-
-
             } else {
                 Toast.makeText(getApplicationContext(), "Please fill the form, don't leave any field blank", Toast.LENGTH_LONG).show();
             }
