@@ -106,8 +106,7 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.app_name),
                         getString(R.string.title_table),
                         getString(R.string.title_tip),
-                        getString(R.string.title_logout),
-                        "รายการอาหาร"
+                        getString(R.string.title_logout)
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;

@@ -11,6 +11,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 
 import java.io.IOException;
@@ -20,6 +21,7 @@ import java.util.Calendar;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
@@ -45,8 +47,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Calendar;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
+import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class MainActivity extends Activity
@@ -63,6 +73,7 @@ public class MainActivity extends Activity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,11 +111,6 @@ public class MainActivity extends Activity
                         .replace(R.id.container, TipFragment.newInstance(position))
                         .commit();
                 break;
-            case 4:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, OrderFragment.newInstance(position))
-                        .commit();
-                break;
             default:
                 finish();
                 break;
@@ -133,8 +139,6 @@ public class MainActivity extends Activity
             case 3:
                 mTitle = getString(R.string.title_logout);
                 break;
-            case 4:
-                mTitle = "รายการอาหาร";
         }
     }
 
@@ -194,61 +198,8 @@ public class MainActivity extends Activity
 
     }
 
-    public class fromDatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-
-            final Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH)+1;
-            int day = c.get(Calendar.DAY_OF_MONTH);
 
 
-            return new DatePickerDialog(getActivity(), this, year, month, day);
-        }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            Button showdate = (Button) findViewById(R.id.showdate);
-            showdate.setText(day+"/"+month+"/"+year);
-        }
-    }
-
-
-
-    public void showFromDatePickerDialog(View v) {
-        DialogFragment newFragment = new fromDatePickerFragment();
-        newFragment.show(getFragmentManager(), "datePicker");
-    }
-
-    public class toDatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-
-            final Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH)+1;
-            int day = c.get(Calendar.DAY_OF_MONTH);
-
-
-            return new DatePickerDialog(getActivity(), this, year, month, day);
-        }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            Button showdate1 = (Button) findViewById(R.id.showdate1);
-            showdate1.setText(day+"/"+month+"/"+year);
-        }
-    }
-
-
-
-    public void showToDatePickerDialog(View v) {
-        DialogFragment newFragment = new toDatePickerFragment();
-        newFragment.show(getFragmentManager(), "datePicker");
-    }
 
 
     @Override
