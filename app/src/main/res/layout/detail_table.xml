@@ -145,7 +145,7 @@
                     android:id="@+id/edt_num"
                     android:layout_gravity="center_horizontal|bottom"
                     android:textSize="30dp"
-                    android:text="0" />
+                    android:text="3" />
 
             </FrameLayout>
         </LinearLayout>

@@ -98,19 +98,25 @@ public class ReserveTable extends Activity implements View.OnClickListener {
     }
 
     private void reserve() {
-        SharedPreferences authen = getSharedPreferences("authen", MODE_PRIVATE);
-        String ip = authen.getString("ip", "10.51.4.106");
-        String url = "http://" + ip + "/resman/index.php/table/reserve";
+        Button tButton = (Button) findViewById(R.id.imageButton3);
+        String sss = tButton.getText().toString();
+        if(sss.equals("เวลาจอง") || edt_name.getText().toString().matches("") || edt_tel.getText().toString().matches("") ) {
+            Toast.makeText(getApplicationContext(), "Please Fill Form!", Toast.LENGTH_LONG).show();
+        } else {
+            SharedPreferences authen = getSharedPreferences("authen", MODE_PRIVATE);
+            String ip = authen.getString("ip", "10.51.4.106");
+            String url = "http://" + ip + "/resman/index.php/table/reserve";
 
-        RequestParams params = new RequestParams();
-        params.put("tabid", tab_id);
-        params.put("name", edt_name.getText().toString());
-        params.put("tel", edt_tel.getText().toString());
-        params.put("amountperson", edt_num.getText().toString());
-        params.put("usrid", usr_id);
-        params.put("rsvtime", time_reserve);
+            RequestParams params = new RequestParams();
+            params.put("tabid", tab_id);
+            params.put("name", edt_name.getText().toString());
+            params.put("tel", edt_tel.getText().toString());
+            params.put("amountperson", edt_num.getText().toString());
+            params.put("usrid", usr_id);
+            params.put("rsvtime", time_reserve);
 
-        invokeWS(url, params);
+            invokeWS(url, params);
+        }
     }
 
     private void sit() {
