@@ -98,7 +98,10 @@ public class TableFragment extends Fragment {
                         startActivityForResult(data, MYACTIVITY_REQUEST_CODE);
                         break;
                     case 2:
-
+                        data = null;
+                        data = new Intent(getActivity(), Order.class);
+                        data.putExtra("id", String.valueOf(tablesList.get(position).getId()));
+                        startActivityForResult(data, MYACTIVITY_REQUEST_CODE);
                         break;
                 }
             }

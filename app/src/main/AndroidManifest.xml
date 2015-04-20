@@ -44,51 +44,28 @@
             android:windowSoftInputMode="adjustResize|stateHidden" >
 >
         </activity>
-        <activity
-            android:name=".SettingActivity"
-            android:label="@string/title_activity_setting" >
-        </activity>
-        <activity
-            android:name=".LogoutActivity"
-            android:label="@string/title_activity_logout" >
-        </activity>
-        <activity
-            android:name=".TableActivity"
-            android:label="@string/title_activity_table" >
-        </activity>
+
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
-        <activity android:name=".OrderFragment" >
-        </activity>
-        <activity
-            android:name=".DatePickerActivity"
-            android:label="@string/title_activity_setting" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity
+            android:name=".Order"
+            android:label="@string/title_order">
+        </activity>
+
+        <activity
+            android:name=".DetailReserved"
+            android:label="@string/title_activity_detail_reserved" >
         </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity
-            android:name=".detailReservedTable"
-            android:label="@string/title_activity_detail_reserved_table" >
-        </activity>
-        <activity
-            android:name=".ReservedTable"
-            android:label="@string/title_activity_reserved_table" >
-        </activity>
-        <activity
-            android:name=".DetailReserved"
-            android:label="@string/title_activity_detail_reserved" >
-        </activity>
+
     </application>
 
 </manifest>

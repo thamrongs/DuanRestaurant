@@ -56,9 +56,9 @@
                     android:text="1"
                     android:id="@+id/txv_tableId"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="-20dp"
-                    android:textSize="120dp" />
+                    android:textSize="120dp"
+                    android:layout_marginLeft="10dp" />
 
 
             </FrameLayout>
@@ -113,7 +113,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="0906206206"
+                    android:text=""
                     android:id="@+id/txv_tel"
                     android:layout_gravity="center"
                     android:layout_marginBottom="3dp"
@@ -125,7 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="6"
+                    android:text=""
                     android:id="@+id/txv_amount"
                     android:layout_gravity="bottom|center_horizontal"
                     android:layout_marginBottom="8dp"
@@ -136,7 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="อิทธิพัทธ์ รัตนอารักษ์"
+                    android:text=""
                     android:id="@+id/txv_name"
                     android:layout_gravity="center_horizontal"
                     android:textColor="#ffffffff"
