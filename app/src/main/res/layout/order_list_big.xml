@@ -49,7 +49,7 @@
             android:layout_width="103dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="1"
+            android:text="0"
             android:id="@+id/txv_number"
             android:layout_alignBottom="@+id/menuPrice"
             android:layout_alignStart="@+id/menuName"
@@ -76,6 +76,19 @@
             android:layout_height="85dp"
             android:layout_gravity="left|top"
             android:id="@+id/ivImage"></ImageView>
+
+        <TextView
+            android:layout_width="24dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="1"
+            android:id="@+id/menuid"
+            android:layout_alignBottom="@+id/menuPrice"
+            android:layout_alignStart="@+id/menuName"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="100dp"
+            android:textColor="#ff020202" />
 
     </FrameLayout>
 </RelativeLayout>

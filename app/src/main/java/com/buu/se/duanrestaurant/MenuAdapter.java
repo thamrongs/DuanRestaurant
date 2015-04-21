@@ -38,7 +38,7 @@ public class MenuAdapter extends ArrayAdapter<Menus> {
 
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         // convert view = design
         View v = convertView;
         if (v == null) {
@@ -50,6 +50,7 @@ public class MenuAdapter extends ArrayAdapter<Menus> {
             holder.btn_add = (Button) v.findViewById(R.id.btn_add);
             holder.btn_reduce = (Button) v.findViewById(R.id.btn_reduce);
             holder.number = (TextView) v.findViewById(R.id.txv_number);
+            holder.menuId = (TextView) v.findViewById(R.id.menuid);
             v.setTag(holder);
         } else {
             holder = (ViewHolder) v.getTag();
@@ -59,6 +60,10 @@ public class MenuAdapter extends ArrayAdapter<Menus> {
         holder.menuName.setText(menuList.get(position).getName());
         holder.menuPrice.setText("ราคา " + menuList.get(position).getPrice() + " บาท");
 
+        int menuid = menuList.get(position).getId();
+        holder.menuId.setText(String.valueOf(menuid));
+        holder.menuId.setVisibility(View.GONE);
+
 //        nnn = (TextView) v.findViewById(R.id.txv_number);
         holder.btn_add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -67,6 +72,7 @@ public class MenuAdapter extends ArrayAdapter<Menus> {
                 num = Integer.parseInt(nnn.getText().toString());
                 num = num + 1;
                 nnn.setText(num.toString());
+                menuList.get(position).setAmount(num);
             }
         });
 
@@ -79,6 +85,7 @@ public class MenuAdapter extends ArrayAdapter<Menus> {
                     num = num - 1;
                 }
                 nnn.setText(num.toString());
+                menuList.get(position).setAmount(num);
             }
         });
 

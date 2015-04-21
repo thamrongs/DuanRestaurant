@@ -16,8 +16,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -38,7 +41,7 @@ import java.util.ArrayList;
 public class Order extends Activity implements View.OnClickListener {
 
     ArrayList<Menus> menusList;
-
+    final int MYACTIVITY_REQUEST_CODE = 101;
     MenuAdapter adapter;
     private Button btn_sumorder, btn_submit;
     ProgressDialog prgDialog;
@@ -84,8 +87,8 @@ public class Order extends Activity implements View.OnClickListener {
             }
         });
 
-        RequestParams params = new RequestParams();
-        params.put("tabid", tabid);
+//        RequestParams params = new RequestParams();
+//        params.put("tabid", tabid);
     }
     @Override
     public void onClick(View v) {
@@ -93,18 +96,91 @@ public class Order extends Activity implements View.OnClickListener {
         RequestParams params = null;
         switch (v.getId()) {
             case R.id.btn_sumorder:
-//                url = "http://" + ip + "/resman/index.php/table/sitbyreserve";
-//                params = new RequestParams();
-//                params.put("tabid", tabid);
-//                reserve(url, params);
+//                Intent data = null;
+//                data = new Intent(this, Order.class);
+//                data.putExtra("id", tabid));
+//                startActivityForResult(data, MYACTIVITY_REQUEST_CODE);
                 break;
             case R.id.btn_submit:
-//                url = "http://" + ip + "/resman/index.php/table/cancel";
-//                params = new RequestParams();
-//                params.put("tabid", tabid);
-//                reserve(url, params);
+                ListView listview = (ListView) findViewById(R.id.list);
+                int count = listview.getAdapter().getCount();
+                String orderlist = "";
+
+                int aaaa;
+                int idddd;
+                for (int i = 0; i < count; i++) {
+                    aaaa = menusList.get(i).getAmount();
+                    idddd = menusList.get(i).getId();
+                    if(aaaa != 0) {
+                        if(i != count-1) {
+                            orderlist += "orders[" + String.valueOf(idddd) + "]=" + String.valueOf(aaaa) + "&";
+                        } else {
+                            orderlist += "orders[" + String.valueOf(idddd) + "]=" + String.valueOf(aaaa);
+                        }
+                    }
+                }
+
+                String urll = "http://" + ip + "/resman/index.php/order/set";
+
+
+                RequestParams paramss = new RequestParams();
+                paramss.put("tabid", tabid);
+                paramss.put("orderlist", orderlist);
+
+                invokeWS(urll, paramss);
                 break;
         }
+    }
+
+    /**
+     * Method that performs RESTful webservice invocations
+     *
+     * @param params
+     */
+    public void invokeWS(String url, RequestParams params){
+        // Show Progress Dialog
+        prgDialog.show();
+        // Make RESTful webservice call using AsyncHttpClient object
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.post(url,params ,new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                prgDialog.hide();
+                prgDialog.dismiss();
+                try {
+                    if(response.getJSONObject("data").getInt("status") == 1){
+                        Toast.makeText(getApplicationContext(), "Order Complete!", Toast.LENGTH_LONG).show();
+                    }else if(response.getInt("status") == -1){
+                        Toast.makeText(getApplicationContext(), "Order Incomplete!", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Something wrong Please call Admin!", Toast.LENGTH_LONG).show();
+                    }
+                    setResult(Activity.RESULT_OK);
+                    finish();
+                } catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(), "Error Occured [Server's JSON response might be invalid]!", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                //super.onFailure(statusCode, headers, responseString, throwable);
+
+                prgDialog.hide();
+                // When Http response code is '404'
+                if(statusCode == 404){
+                    Toast.makeText(getApplicationContext(), "Requested resource not found", Toast.LENGTH_LONG).show();
+                }
+                // When Http response code is '500'
+                else if(statusCode == 500){
+                    Toast.makeText(getApplicationContext(), "Something went wrong at server end", Toast.LENGTH_LONG).show();
+                }
+                // When Http response code other than 404, 500
+                else{
+                    Toast.makeText(getApplicationContext(), "Unexpected Error occcured! [Most common Error: Device might not be connected to Internet or remote server is not up and running]", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
 

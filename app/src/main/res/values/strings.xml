@@ -25,6 +25,7 @@
     <string name="title_activity_detail_reserved_table">detailReservedTable</string>
     <string name="title_activity_reserved_table">reservedTable</string>
     <string name="title_activity_detail_reserved">DetailReserved</string>
+    <string name="title_activity_bill">Bill</string>
 
     <!--<string name="action_settings">Settings</string>-->
 </resources>

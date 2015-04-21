@@ -10,15 +10,18 @@ public class Menus {
     private String name;
     private String img;
     private double price;
+    private int amount;
 
     public Menus() {
+        amount = 0;
     }
 
-    public Menus(int id, String name, String img, double price) {
+    public Menus(int id, String name, String img, double price, int amount) {
         this.id = id;
         this.name = name;
         this.img = img;
         this.price = price;
+        this.amount = amount;
     }
 
     public int getId() {
@@ -52,6 +55,15 @@ public class Menus {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
 }
 
 
