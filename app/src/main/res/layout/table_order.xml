@@ -12,14 +12,14 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="418dp"
-        android:id="@+id/listView"
+        android:id="@+id/listSumOrder"
         android:layout_weight="0.72" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ชำระเงิน"
-        android:id="@+id/button7"
+        android:id="@+id/btn_checkbill"
         android:textSize="25dp"
         android:onClick="onClickConfirm"
         android:layout_marginBottom="-10dp" />

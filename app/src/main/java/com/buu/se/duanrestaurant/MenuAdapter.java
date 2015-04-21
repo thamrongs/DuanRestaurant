@@ -3,14 +3,10 @@ package com.buu.se.duanrestaurant;
 /**
  * Created by Sarin on 24/3/2558.
  */
-import java.io.InputStream;
+
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MenuAdapter extends ArrayAdapter<Menus> {
     ArrayList<Menus> menuList;

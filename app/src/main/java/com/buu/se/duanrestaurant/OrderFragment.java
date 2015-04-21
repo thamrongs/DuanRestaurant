@@ -35,16 +35,7 @@ public class OrderFragment extends Fragment {
     ArrayList<Menus> menusList;
 
     MenuAdapter adapter;
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
     private static final String ARG_SECTION_NUMBER = "section_number";
-
-    /**
-     * Returns a new instance of this fragment for the given section
-     * number.
-     */
     public static OrderFragment newInstance(int sectionNumber) {
         OrderFragment fragment = new OrderFragment();
         Bundle args = new Bundle();
@@ -86,8 +77,8 @@ public class OrderFragment extends Fragment {
     }
 
     @Override
-     public void onAttach(Activity activity) {
-       super.onAttach(activity);
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }

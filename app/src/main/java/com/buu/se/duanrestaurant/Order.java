@@ -96,10 +96,10 @@ public class Order extends Activity implements View.OnClickListener {
         RequestParams params = null;
         switch (v.getId()) {
             case R.id.btn_sumorder:
-//                Intent data = null;
-//                data = new Intent(this, Order.class);
-//                data.putExtra("id", tabid));
-//                startActivityForResult(data, MYACTIVITY_REQUEST_CODE);
+                Intent data = null;
+                data = new Intent(this, Bill.class);
+                data.putExtra("id", tabid);
+                startActivityForResult(data, MYACTIVITY_REQUEST_CODE);
                 break;
             case R.id.btn_submit:
                 ListView listview = (ListView) findViewById(R.id.list);
@@ -249,6 +249,5 @@ public class Order extends Activity implements View.OnClickListener {
 
         }
     }
-
 
 }
