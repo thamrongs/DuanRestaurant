@@ -145,7 +145,7 @@
                     android:id="@+id/edt_num"
                     android:layout_gravity="center_horizontal|bottom"
                     android:textSize="30dp"
-                    android:text="3" />
+                    android:text="1" />
 
             </FrameLayout>
         </LinearLayout>
@@ -158,7 +158,7 @@
             <Button
                 android:layout_width="167dp"
                 android:layout_height="55dp"
-                android:text="ยืนยัน"
+                android:text="นั่ง"
                 android:id="@+id/btn_sit"
                 android:layout_gravity="right|center_vertical"
                 android:textSize="20dp" />

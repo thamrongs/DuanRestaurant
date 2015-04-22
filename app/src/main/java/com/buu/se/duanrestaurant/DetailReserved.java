@@ -25,6 +25,7 @@ import org.json.JSONObject;
 public class DetailReserved extends Activity implements View.OnClickListener {
 
     private Button btn_time, btn_sit, btn_cancel;
+    final int MYACTIVITY_REQUEST_CODE = 101;
     private TextView txv_name, txv_tel, txv_amount, txv_tableId;
     ProgressDialog prgDialog;
     String tabid, ip;
@@ -92,12 +93,17 @@ public class DetailReserved extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         String url = "";
         RequestParams params = null;
+        Intent data;
         switch (v.getId()) {
             case R.id.btn_sit:
                 url = "http://" + ip + "/resman/index.php/table/sitbyreserve";
                 params = new RequestParams();
                 params.put("tabid", tabid);
                 reserve(url, params);
+
+                data = new Intent(this, Order.class);
+                data.putExtra("id", String.valueOf(tabid));
+                startActivityForResult(data, MYACTIVITY_REQUEST_CODE);
                 break;
             case R.id.btn_cancel:
                 url = "http://" + ip + "/resman/index.php/table/cancel";

@@ -129,6 +129,11 @@ public class Order extends Activity implements View.OnClickListener {
                 paramss.put("orderlist", orderlist);
 
                 invokeWS(urll, paramss);
+
+                Intent dataa = null;
+                dataa = new Intent(this, Bill.class);
+                dataa.putExtra("id", tabid);
+                startActivityForResult(dataa, MYACTIVITY_REQUEST_CODE);
                 break;
         }
     }

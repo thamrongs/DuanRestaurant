@@ -188,10 +188,10 @@ public class TipFragment extends Fragment implements View.OnClickListener {
                         listview.setAdapter(adapter);
 
                         TextView sumamount = (TextView) getActivity().findViewById(R.id.sumamount);
-                        if(response.getString("sumtip").equals("null")) {
+                        if(response.getDouble("sumtip") == 0) {
                             sumamount.setText("0");
                         }else {
-                            sumamount.setText(response.getString("sumtip"));
+                            sumamount.setText(String.valueOf(response.getDouble("sumtip")));
                         }
                     }else if(response.getInt("status") == -1){
                         Toast.makeText(getActivity().getApplicationContext(), "Get Tips Incomplete!", Toast.LENGTH_LONG).show();

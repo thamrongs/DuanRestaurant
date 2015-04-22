@@ -39,7 +39,7 @@ public class ReserveTable extends Activity implements View.OnClickListener {
     private int tab_id, usr_id;
     private String time_reserve;
     private ProgressDialog prgDialog;
-
+    final int MYACTIVITY_REQUEST_CODE = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +132,10 @@ public class ReserveTable extends Activity implements View.OnClickListener {
         params.put("usrid", usr_id);
 
         invokeWS(url, params);
+        Intent data;
+        data = new Intent(this, Order.class);
+        data.putExtra("id", String.valueOf(tab_id));
+        startActivityForResult(data, MYACTIVITY_REQUEST_CODE);
     }
 
     @Override
