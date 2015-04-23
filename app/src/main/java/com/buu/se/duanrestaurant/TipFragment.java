@@ -13,11 +13,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +35,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -124,15 +123,16 @@ public class TipFragment extends Fragment implements View.OnClickListener {
 
                     JSONObject jsono = new JSONObject(data);
                     JSONArray jarray = jsono.getJSONArray("tips");
-
+                    NumberFormat numberFormat = new DecimalFormat(".00");
                     for (int i = 0; i < jarray.length(); i++) {
                         JSONObject object = jarray.getJSONObject(i);
 
                         Tips tip = new Tips();
 
-                        tip.setDate(((object.getString("date").equals(""))?
+                        tip.setDate(((object.getString("date").equals("")) ?
                                 "รวม" : object.getString("date")));
-                        tip.setAmount(object.getInt("amount"));
+
+                        tip.setAmount(Double.parseDouble(numberFormat.format(object.getDouble("amount"))));
 
                         tipList.add(tip);
                     }

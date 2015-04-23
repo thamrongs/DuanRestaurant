@@ -64,7 +64,8 @@ public class MenuAdapter extends ArrayAdapter<Menus> {
             public void onClick(View v) {
                 View view = (View)v.getParent();
                 nnn = (TextView) view.findViewById(R.id.txv_number);
-                num = Integer.parseInt(nnn.getText().toString());
+                //num = Integer.parseInt(nnn.getText().toString());
+                num = menuList.get(position).getAmount();
                 num = num + 1;
                 nnn.setText(num.toString());
                 menuList.get(position).setAmount(num);
@@ -76,6 +77,7 @@ public class MenuAdapter extends ArrayAdapter<Menus> {
                 View view = (View)v.getParent();
                 nnn = (TextView) view.findViewById(R.id.txv_number);
                 num = Integer.parseInt(nnn.getText().toString());
+
                 if(num > 0) {
                     num = num - 1;
                 }

@@ -7,13 +7,13 @@ package com.buu.se.duanrestaurant;
 public class Tips {
 
     private String date;
-    private int amount;
+    private Double amount;
 
 
     public Tips() {
     }
 
-    public Tips(String date, int amount) {
+    public Tips(String date, Double amount) {
         this.date = date;
         this.amount = amount;
     }
@@ -26,11 +26,11 @@ public class Tips {
         this.date = date;
     }
 
-    public int getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 }

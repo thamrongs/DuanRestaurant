@@ -15,8 +15,6 @@ import android.widget.TextView;
  * Created by thamrongs on 3/31/15 AD.
  */
 
-
-
 public class TableAdapter extends ArrayAdapter<Tables> {
     ArrayList<Tables> tableList;
     LayoutInflater vi;

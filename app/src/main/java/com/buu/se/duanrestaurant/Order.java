@@ -1,20 +1,16 @@
 package com.buu.se.duanrestaurant;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -73,23 +69,18 @@ public class Order extends Activity implements View.OnClickListener {
         menusList = new ArrayList<Menus>();
         new JSONAsyncTask().execute("http://" + ip + "/resman/index.php/listmenu/get");
 
-        ListView listview = (ListView) findViewById(R.id.list);
+        final ListView listview = (ListView) findViewById(R.id.list);
         adapter = new MenuAdapter(getApplicationContext(), R.layout.order_list_big, menusList);
 
         listview.setAdapter(adapter);
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-                                    long id) {
-                // TODO Auto-generated method stub
-                Toast.makeText(getApplicationContext(), menusList.get(position).getId(), Toast.LENGTH_LONG).show();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("POSITION", String.valueOf(position));
+                Toast.makeText(getApplicationContext(), "Click Tip " + position + " Complete!", Toast.LENGTH_LONG).show();
             }
-        });
+        } );
 
-//        RequestParams params = new RequestParams();
-//        params.put("tabid", tabid);
     }
     @Override
     public void onClick(View v) {

@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,16 +63,6 @@ public class OrderFragment extends Fragment {
         adapter = new MenuAdapter(getActivity().getApplicationContext(), R.layout.order_list_big, menusList);
 
         listview.setAdapter(adapter);
-
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-                                    long id) {
-                // TODO Auto-generated method stub
-                Toast.makeText(getActivity().getApplicationContext(), menusList.get(position).getId(), Toast.LENGTH_LONG).show();
-            }
-        });
 
         return rootView;
     }
