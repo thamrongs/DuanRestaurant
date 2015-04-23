@@ -73,10 +73,8 @@ public class Order extends Activity implements View.OnClickListener {
         adapter = new MenuAdapter(getApplicationContext(), R.layout.order_list_big, menusList);
 
         listview.setAdapter(adapter);
-
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("POSITION", String.valueOf(position));
                 Toast.makeText(getApplicationContext(), "Click Tip " + position + " Complete!", Toast.LENGTH_LONG).show();
             }
         } );
