@@ -54,7 +54,11 @@ public class MenuAdapter extends ArrayAdapter<Menus> {
         new DownloadImageTask(holder.imageview).execute(menuList.get(position).getImg());
         holder.menuName.setText(menuList.get(position).getName());
         holder.menuPrice.setText("ราคา " + menuList.get(position).getPrice() + " บาท");
-
+        if((menuList.get(position).getAmount()) != 0){
+            holder.number.setText(String.valueOf(menuList.get(position).getAmount()));
+        }else{
+            holder.number.setText("0");
+        }
         int menuid = menuList.get(position).getId();
         holder.menuId.setText(String.valueOf(menuid));
         holder.menuId.setVisibility(View.GONE);
@@ -76,8 +80,8 @@ public class MenuAdapter extends ArrayAdapter<Menus> {
             public void onClick(View v) {
                 View view = (View)v.getParent();
                 nnn = (TextView) view.findViewById(R.id.txv_number);
-                num = Integer.parseInt(nnn.getText().toString());
-
+                //num = Integer.parseInt(nnn.getText().toString());
+                num = menuList.get(position).getAmount();
                 if(num > 0) {
                     num = num - 1;
                 }
