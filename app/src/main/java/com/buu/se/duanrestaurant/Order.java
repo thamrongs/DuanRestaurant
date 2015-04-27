@@ -209,9 +209,11 @@ public class Order extends Activity implements View.OnClickListener {
         @Override
         protected Boolean doInBackground(String... urls) {
             try {
-
+                SharedPreferences authen = getSharedPreferences("persondata",MODE_PRIVATE);
+                String api_key = authen.getString("apikey", "");
                 //------------------>>
                 HttpGet httppost = new HttpGet(urls[0]);
+                httppost.addHeader("Authorization", api_key);
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpResponse response = httpclient.execute(httppost);
 
