@@ -98,10 +98,12 @@ public class Order extends Activity implements View.OnClickListener {
 
                 int aaaa;
                 int idddd;
+                int co=0;
                 for (int i = 0; i < count; i++) {
                     aaaa = menusList.get(i).getAmount();
                     idddd = menusList.get(i).getId();
                     if(aaaa != 0) {
+                        co++;
                         if(i != count-1) {
                             orderlist += "orders[" + String.valueOf(idddd) + "]=" + String.valueOf(aaaa) + "&";
                         } else {
@@ -110,19 +112,23 @@ public class Order extends Activity implements View.OnClickListener {
                     }
                 }
 
-                String urll = "http://" + ip + "/resman/index.php/order/set";
+                if(co > 0) {
+                    String urll = "http://" + ip + "/resman/index.php/order/set";
 
 
-                RequestParams paramss = new RequestParams();
-                paramss.put("tabid", tabid);
-                paramss.put("orderlist", orderlist);
+                    RequestParams paramss = new RequestParams();
+                    paramss.put("tabid", tabid);
+                    paramss.put("orderlist", orderlist);
 
-                invokeWS(urll, paramss);
+                    invokeWS(urll, paramss);
 
-                Intent dataa = null;
-                dataa = new Intent(this, Bill.class);
-                dataa.putExtra("id", tabid);
-                startActivityForResult(dataa, MYACTIVITY_REQUEST_CODE);
+                    Intent dataa = null;
+                    dataa = new Intent(this, Bill.class);
+                    dataa.putExtra("id", tabid);
+                    startActivityForResult(dataa, MYACTIVITY_REQUEST_CODE);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Please Select Menu for Order ", Toast.LENGTH_LONG).show();
+                }
                 break;
         }
     }

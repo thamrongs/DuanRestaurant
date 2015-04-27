@@ -179,6 +179,9 @@ public class DetailReserved extends Activity implements View.OnClickListener {
         prgDialog.show();
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
+        SharedPreferences authen = getSharedPreferences("persondata", MODE_PRIVATE);
+        String api_key = authen.getString("apikey", "");
+        client.addHeader("Authorization", api_key);
         client.setConnectTimeout(5000);
         client.post(url,params ,new JsonHttpResponseHandler() {
             @Override
