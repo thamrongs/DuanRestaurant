@@ -150,6 +150,9 @@ public class Bill extends Activity implements View.OnClickListener {
 
     public void invokeWS(RequestParams params){
         AsyncHttpClient client = new AsyncHttpClient();
+        SharedPreferences authen = getSharedPreferences("persondata", MODE_PRIVATE);
+        String api_key = authen.getString("apikey", "");
+        client.addHeader("Authorization", api_key);
         client.post(url ,params ,new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -227,6 +230,9 @@ public class Bill extends Activity implements View.OnClickListener {
 
                 //------------------>>
                 HttpGet httppost = new HttpGet(urls[0]);
+                SharedPreferences authen = getSharedPreferences("persondata", MODE_PRIVATE);
+                String api_key = authen.getString("apikey", "");
+                httppost.addHeader("Authorization", api_key);
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpResponse response = httpclient.execute(httppost);
 
