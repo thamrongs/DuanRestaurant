@@ -110,6 +110,9 @@ public class TipFragment extends Fragment implements View.OnClickListener {
 
                 //------------------>>
                 HttpGet httppost = new HttpGet(urls[0]);
+                SharedPreferences authen = getActivity().getSharedPreferences("persondata", getActivity().MODE_PRIVATE);
+                String api_key = authen.getString("apikey", "");
+                httppost.addHeader("Authorization", api_key);
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpResponse response = httpclient.execute(httppost);
 
@@ -175,6 +178,9 @@ public class TipFragment extends Fragment implements View.OnClickListener {
         String ip = authen.getString("ip", "10.51.4.106");
         url = "http://" + ip + "/resman/index.php/tips/get?usr_id=" + usr_id + "&fromdate=" + FromDate + "&todate=" + ToDate;
         AsyncHttpClient client = new AsyncHttpClient();
+        SharedPreferences persondata = getActivity().getSharedPreferences("persondata", getActivity().MODE_PRIVATE);
+        String api_key = persondata.getString("apikey", "");
+        client.addHeader("Authorization", api_key);
         client.post(url ,params ,new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
