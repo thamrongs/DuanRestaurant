@@ -206,6 +206,9 @@ public class ReserveTable extends Activity implements View.OnClickListener {
         prgDialog.show();
         // Make RESTful webservice call using AsyncHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
+        SharedPreferences authen = getSharedPreferences("persondata", MODE_PRIVATE);
+        String api_key = authen.getString("apikey", "");
+        client.addHeader("Authorization", api_key);
         client.post(url,params ,new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

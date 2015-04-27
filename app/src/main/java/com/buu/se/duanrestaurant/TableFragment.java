@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -151,15 +152,18 @@ public class TableFragment extends Fragment {
         @Override
         protected Boolean doInBackground(String... urls) {
             try {
+                SharedPreferences authen = getActivity().getSharedPreferences("persondata", getActivity().MODE_PRIVATE);
+                String api_key = authen.getString("apikey", "");
 
                 //------------------>>
-                HttpGet httppost = new HttpGet(urls[0]);
+                HttpGet httpGet = new HttpGet(urls[0]);
+                httpGet.addHeader("Authorization", api_key);
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpResponse response = httpclient.execute(httppost);
+                HttpResponse response = httpclient.execute(httpGet);
 
                 // StatusLine stat = response.getStatusLine();
                 int status = response.getStatusLine().getStatusCode();
-
+//                Toast.makeText(getActivity().getApplicationContext(), api_key, Toast.LENGTH_LONG).show();
                 if (status == 200) {
                     HttpEntity entity = response.getEntity();
                     String data = EntityUtils.toString(entity);

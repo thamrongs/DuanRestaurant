@@ -95,9 +95,11 @@ public class OrderFragment extends Fragment {
         @Override
         protected Boolean doInBackground(String... urls) {
             try {
-
+                SharedPreferences authen = getActivity().getSharedPreferences("persondata", getActivity().MODE_PRIVATE);
+                String api_key = authen.getString("apikey", "");
                 //------------------>>
                 HttpGet httppost = new HttpGet(urls[0]);
+                httppost.addHeader("Authorization", api_key);
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpResponse response = httpclient.execute(httppost);
 
