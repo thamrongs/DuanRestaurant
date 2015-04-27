@@ -36,6 +36,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -147,7 +150,7 @@ public class LoginActivity extends Activity {
             if (!username.matches("") && !password.matches("")) {
                 RequestParams params = new RequestParams();
                 params.put("user", username);
-                params.put("pass", password);
+                params.put("pass", sha1(password));
                 fullurl = "http://" + ip + "/resman/index.php/authen/login";
 //                Toast.makeText(getApplicationContext(), fullurl, Toast.LENGTH_LONG).show();
                 invokeWS(fullurl, params);
@@ -225,10 +228,24 @@ public class LoginActivity extends Activity {
             editor.putString("tel", obj.getString("tel"));
             editor.putString("email", obj.getString("email"));
             editor.putString("picurl", obj.getString("picurl"));
+            editor.putString("apikey", obj.getString("apikey"));
             editor.commit();
         } catch (JSONException e) {
             e.printStackTrace();
         }
         startActivity(data);
+    }
+
+    public String sha1(String s) {
+        MessageDigest digest = null;
+        try {
+            digest = MessageDigest.getInstance("SHA-1");
+        } catch (NoSuchAlgorithmException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        digest.reset();
+        byte[] data = digest.digest(s.getBytes());
+        return String.format("%0" + (data.length*2) + "X", new BigInteger(1, data));
     }
 }
