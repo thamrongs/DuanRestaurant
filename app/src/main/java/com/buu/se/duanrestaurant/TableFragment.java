@@ -1,15 +1,20 @@
 package com.buu.se.duanrestaurant;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -41,17 +46,7 @@ public class TableFragment extends Fragment {
     Fragment fr;
     FragmentManager fm;
     FragmentTransaction fragmentTransaction;
-
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
     private static final String ARG_SECTION_NUMBER = "section_number";
-
-    /**
-     * Returns a new instance of this fragment for the given section
-     * number.
-     */
     public static TableFragment newInstance(int sectionNumber) {
         TableFragment fragment = new TableFragment();
         Bundle args = new Bundle();
@@ -63,12 +58,20 @@ public class TableFragment extends Fragment {
     public TableFragment() {
     }
 
+    private Menu menu=null;
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+    {
+        inflater.inflate(R.menu.main, menu);
+        this.menu=menu;
+        super.onCreateOptionsMenu(menu,inflater);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.fragment_table, container, false);
-
+        setHasOptionsMenu(true);
         SharedPreferences authen = getActivity().getSharedPreferences("authen", getActivity().MODE_PRIVATE);
         String ip = authen.getString("ip", "10.51.4.106");
 
@@ -108,8 +111,12 @@ public class TableFragment extends Fragment {
                 }
             }
         });
+
+
         return rootView;
     }
+
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -138,6 +145,16 @@ public class TableFragment extends Fragment {
     class JSONAsyncTask extends AsyncTask<String, Void, Boolean> {
 
         ProgressDialog dialog;
+        private Context mCon;
+
+        public JSONAsyncTask()
+        {
+        }
+
+        public JSONAsyncTask(Context con)
+        {
+            mCon = con;
+        }
 
         @Override
         protected void onPreExecute() {
@@ -196,11 +213,14 @@ public class TableFragment extends Fragment {
         }
 
         protected void onPostExecute(Boolean result) {
+
             dialog.cancel();
             adapter.notifyDataSetChanged();
 
         }
     }
+
+
 
 
 }

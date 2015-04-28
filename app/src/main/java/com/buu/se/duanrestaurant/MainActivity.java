@@ -62,18 +62,22 @@ import java.util.Date;
 public class MainActivity extends Activity
     implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
-
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
     private CharSequence mTitle;
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        FragmentManager fragmentManager = getFragmentManager();
+        //item.setEnabled(false);
+        switch(item.getItemId()) {
+            case R.id.action_refresh:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, TableFragment.newInstance(1))
+                        .commit();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +99,8 @@ public class MainActivity extends Activity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         Log.d("TEST", position+"");
+
+        this.invalidateOptionsMenu();
         switch (position) {
             case 0:
                 fragmentManager.beginTransaction()
@@ -209,6 +215,8 @@ public class MainActivity extends Activity
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.main, menu);
+            menu.findItem(R.id.action_refresh).setVisible(false);
+            invalidateOptionsMenu();
             restoreActionBar();
             return true;
         }

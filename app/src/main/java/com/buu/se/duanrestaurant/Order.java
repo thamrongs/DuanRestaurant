@@ -2,14 +2,18 @@ package com.buu.se.duanrestaurant;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.internal.view.menu.ActionMenuItemView;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,8 +45,10 @@ public class Order extends Activity implements View.OnClickListener {
     final int MYACTIVITY_REQUEST_CODE = 101;
     MenuAdapter adapter;
     private Button btn_sumorder, btn_submit;
+    private ImageView imgview;
     ProgressDialog prgDialog;
     String tabid, ip;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +66,7 @@ public class Order extends Activity implements View.OnClickListener {
 
         btn_sumorder = (Button) findViewById(R.id.btn_sumorder);
         btn_submit = (Button) findViewById(R.id.btn_submit);
+        imgview = (ImageView) findViewById(R.id.ivImage);
 
         btn_sumorder.setOnClickListener(this);
         btn_submit.setOnClickListener(this);
@@ -73,13 +80,18 @@ public class Order extends Activity implements View.OnClickListener {
         adapter = new MenuAdapter(getApplicationContext(), R.layout.order_list_big, menusList);
 
         listview.setAdapter(adapter);
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "Click Tip " + position + " Complete!", Toast.LENGTH_LONG).show();
-            }
-        } );
+        listview.setClickable(true);
 
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+                                    long id) {
+                Log.d("CLICKLIST", "Click " + position);
+            }
+        });
     }
+
     @Override
     public void onClick(View v) {
         String url = "";

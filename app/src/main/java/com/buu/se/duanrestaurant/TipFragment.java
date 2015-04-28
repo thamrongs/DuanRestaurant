@@ -11,6 +11,8 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -71,7 +73,7 @@ public class TipFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         persondata = getActivity().getSharedPreferences("persondata", Context.MODE_PRIVATE);
         usr_id = persondata.getInt("userid", 0);
-
+        setHasOptionsMenu(false);
         View rootView = inflater.inflate(R.layout.fragment_tip, container, false);
         invokeWS(params);
 
