@@ -85,11 +85,7 @@ public class ReserveTable extends Activity implements View.OnClickListener {
             prgDialog.setCancelable(false);
         }
 
-        Button tButton = (Button) findViewById(R.id.imageButton3);
-        final Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR_OF_DAY);
-        int minute = c.get(Calendar.MINUTE);
-        tButton.setText(String.valueOf(hour) + ":" + String.valueOf(minute));
+        edt_num.setEnabled(false);
     }
 
     private void add() {
