@@ -26,6 +26,7 @@ import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -40,6 +41,8 @@ public class ReserveTable extends Activity implements View.OnClickListener {
     private String time_reserve;
     private ProgressDialog prgDialog;
     final int MYACTIVITY_REQUEST_CODE = 101;
+    int hhh;
+    int mmm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +84,8 @@ public class ReserveTable extends Activity implements View.OnClickListener {
             // Set Cancelable as False
             prgDialog.setCancelable(false);
         }
+
+        edt_num.setEnabled(false);
     }
 
     private void add() {
@@ -98,11 +103,20 @@ public class ReserveTable extends Activity implements View.OnClickListener {
     }
 
     private void reserve() {
+        final Calendar c = Calendar.getInstance();
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int min = c.get(Calendar.MINUTE);
+
         Button tButton = (Button) findViewById(R.id.imageButton3);
         String sss = tButton.getText().toString();
         if(sss.equals("เวลาจอง") || edt_name.getText().toString().matches("") || edt_tel.getText().toString().matches("") ) {
             Toast.makeText(getApplicationContext(), "Please Fill Form!", Toast.LENGTH_LONG).show();
-        } else {
+        } else if(hour > hhh) {
+            Toast.makeText(getApplicationContext(), "Please Check Time Reserve!", Toast.LENGTH_LONG).show();
+        } else if(hour == hhh && (min+15) > mmm) {
+            Toast.makeText(getApplicationContext(), "Please Check Time Reserve!", Toast.LENGTH_LONG).show();
+        }
+        else {
             SharedPreferences authen = getSharedPreferences("authen", MODE_PRIVATE);
             String ip = authen.getString("ip", "10.51.4.106");
             String url = "http://" + ip + "/resman/index.php/table/reserve";
@@ -173,6 +187,7 @@ public class ReserveTable extends Activity implements View.OnClickListener {
         }
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             //MainActivity.this.SetButton(view,hourOfDay,minute);
+
             Button tButton = (Button) findViewById(R.id.imageButton3);
             String m = "",h = "";
             if(minute < 10){
@@ -186,6 +201,8 @@ public class ReserveTable extends Activity implements View.OnClickListener {
                 h = hourOfDay+"";
             }
             tButton.setText(h + ":" + m);
+            hhh = Integer.valueOf(h);
+            mmm = Integer.valueOf(m);
             time_reserve = h + ":" + m + ":00";
         }
 
