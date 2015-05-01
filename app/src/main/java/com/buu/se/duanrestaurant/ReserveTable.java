@@ -1,5 +1,6 @@
 package com.buu.se.duanrestaurant;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -170,6 +171,7 @@ public class ReserveTable extends Activity implements View.OnClickListener {
         }
     }
 
+    @SuppressLint("ValidFragment")
     public class TimePickerFragment extends DialogFragment
             implements TimePickerDialog.OnTimeSetListener {
 

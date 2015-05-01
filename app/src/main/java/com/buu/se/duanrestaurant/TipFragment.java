@@ -1,5 +1,6 @@
 package com.buu.se.duanrestaurant;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -233,6 +234,7 @@ public class TipFragment extends Fragment implements View.OnClickListener {
         });
     }
 
+    @SuppressLint("ValidFragment")
     public class fromDatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
 
@@ -256,6 +258,7 @@ public class TipFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    @SuppressLint("ValidFragment")
     public class toDatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
 
