@@ -69,35 +69,35 @@ public class MenuAdapter extends ArrayAdapter<Menus> {
         holder.menuId.setText(String.valueOf(menuid));
         holder.menuId.setVisibility(View.GONE);
 
-        holder.imageview.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //Order order = ;
-                Intent data;
-//                Log.d("clickimg", "click " + position + " " + menuList.get(position).getImg());
-//                data = new Intent(getContext(), ReserveTable.class);
-//                data.putExtra("img", String.valueOf(menuList.get(position).getId()));
-//                (new Order()).startActivityForResult(data, MYACTIVITY_REQUEST_CODE);
-//                AlertDialog.Builder imageDialog = new AlertDialog.Builder(getContext());
-////                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-////
-////                View layout = inflater.inflate(R.layout.detail_food, null);
-////
-////                ImageView image = (ImageView) layout.findViewById(R.id.imgfood);
-////                new DownloadImageTask(image).execute(menuList.get(position).getImg());
-////
-////                imageDialog.setView(layout);
-//                imageDialog.setNegativeButton("กลับ",
-//                        new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                dialog.cancel();
-//                            }
-//                        });
-//                //imageDialog.create();
-//                imageDialog.show();
-
-            }
-        });
+//        holder.imageview.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                //Order order = ;
+//                Intent data;
+////                Log.d("clickimg", "click " + position + " " + menuList.get(position).getImg());
+////                data = new Intent(getContext(), ReserveTable.class);
+////                data.putExtra("img", String.valueOf(menuList.get(position).getId()));
+////                (new Order()).startActivityForResult(data, MYACTIVITY_REQUEST_CODE);
+////                AlertDialog.Builder imageDialog = new AlertDialog.Builder(getContext());
+//////                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//////
+//////                View layout = inflater.inflate(R.layout.detail_food, null);
+//////
+//////                ImageView image = (ImageView) layout.findViewById(R.id.imgfood);
+//////                new DownloadImageTask(image).execute(menuList.get(position).getImg());
+//////
+//////                imageDialog.setView(layout);
+////                imageDialog.setNegativeButton("กลับ",
+////                        new DialogInterface.OnClickListener() {
+////                            @Override
+////                            public void onClick(DialogInterface dialog, int which) {
+////                                dialog.cancel();
+////                            }
+////                        });
+////                //imageDialog.create();
+////                imageDialog.show();
+//
+//            }
+//        });
 
         holder.btn_add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
