@@ -29,13 +29,13 @@
                     android:layout_weight="0.23" />
 
                 <ImageView
-                    android:layout_width="217dp"
-                    android:layout_height="200dp"
+                    android:layout_width="230dp"
+                    android:layout_height="230dp"
                     android:id="@+id/imv_profile"
                     android:layout_gravity="center"
                     android:scaleType="centerCrop"
                     android:src="@drawable/per_profile"
-                    android:layout_marginTop="-20dp" />
+                    android:layout_marginTop="-10dp" />
 
             </FrameLayout>
 
