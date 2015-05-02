@@ -151,7 +151,7 @@ public class LoginActivity extends Activity {
                 RequestParams params = new RequestParams();
                 params.put("user", username);
                 params.put("pass", sha1(password));
-                fullurl = "http://" + ip + "/resman/index.php/authen/login";
+                fullurl = "https://" + ip + "/resman/index.php/authen/login";
 //                Toast.makeText(getApplicationContext(), fullurl, Toast.LENGTH_LONG).show();
                 invokeWS(fullurl, params);
             } else {
@@ -178,7 +178,7 @@ public class LoginActivity extends Activity {
         // Show Progress Dialog
         prgDialog.show();
         // Make RESTful webservice call using AsyncHttpClient object
-        AsyncHttpClient client = new AsyncHttpClient();
+        AsyncHttpClient client = new AsyncHttpClient(true, 80, 443);
         client.setConnectTimeout(5000);
         client.post(url,params ,new JsonHttpResponseHandler() {
             @Override
