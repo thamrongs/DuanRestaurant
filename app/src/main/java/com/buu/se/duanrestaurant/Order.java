@@ -76,7 +76,7 @@ public class Order extends Activity implements View.OnClickListener {
         menusList = new ArrayList<Menus>();
         new JSONAsyncTask().execute("http://" + ip + "/resman/index.php/listmenu/get");
 
-        final ListView listview = (ListView) findViewById(R.id.list);
+        ListView listview = (ListView) findViewById(R.id.list);
         adapter = new MenuAdapter(getApplicationContext(), R.layout.order_list_big, menusList);
 
         listview.setAdapter(adapter);

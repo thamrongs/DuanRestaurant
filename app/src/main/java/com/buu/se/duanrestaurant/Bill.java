@@ -44,12 +44,14 @@ public class Bill extends Activity implements View.OnClickListener {
 
     ArrayList<Bills> menusList;
     final int MYACTIVITY_REQUEST_CODE = 101;
-    BillAdapter adapter;
-    private Button btn_checkbill;
-    ProgressDialog prgDialog;
-    String tabid, ip;
+    BillAdapter     adapter;
+    private Button  btn_checkbill;
+    ProgressDialog  prgDialog;
+    String  tabid, ip;
     public String url;
-    int usr_id;
+    int     usr_id;
+    double  sumprice;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +78,8 @@ public class Bill extends Activity implements View.OnClickListener {
 
         url = "http://" + ip + "/resman/index.php/order/get?tabid=" + tabid;
         invokeWS(paramss);
+
+        //btn_checkbill.setText("ชำระเงิน " + sumprice + " บาท");
     }
     @Override
     public void onClick(View v) {
@@ -257,9 +261,10 @@ public class Bill extends Activity implements View.OnClickListener {
                         bill.setImg(object.getString("img"));
                         bill.setAmount(object.getInt("amount"));
                         bill.setPrice(object.getDouble("price"));
-
+                        sumprice += object.getDouble("price");
                         menusList.add(bill);
                     }
+
                     return true;
                 }
 
@@ -276,6 +281,7 @@ public class Bill extends Activity implements View.OnClickListener {
         protected void onPostExecute(Boolean result) {
             dialog.cancel();
             adapter.notifyDataSetChanged();
+            btn_checkbill.setText("ชำระเงิน "+sumprice+" บาท");
 
         }
     }
